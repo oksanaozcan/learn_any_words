@@ -1,7 +1,7 @@
 export const DATA = [
   {
     id: '1',
-    word: 'kopek',
+    word: 'köpek',
     translate: 'собака',
     img: "https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416_960_720.jpg",
     synonims: '',
