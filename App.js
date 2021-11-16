@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppLoading from 'expo-app-loading';
 import MainScreen from './src/screens/MainScreen';
+import AllWordsScreen from './src/screens/AllWordsScreen';
 
 const MainStack = createNativeStackNavigator();
 
@@ -21,7 +22,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <MainStack.Navigator>
-        <MainStack.Screen name="Main" component={MainScreen}/>
+        <MainStack.Screen name="Main" component={MainScreen} options={{title: "Learn Any Words"}}/>
+        <MainStack.Screen name="AllWords" component={AllWordsScreen} options={{title: "All Words"}}/>
       </MainStack.Navigator>
     </NavigationContainer>
   );
