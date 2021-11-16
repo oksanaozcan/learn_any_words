@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import MainStackScreen from './src/navigation/MainStack';
 import LearnWordsScreen from './src/screens/LearnWordsScreen';
 import AddWordScreen from './src/screens/AddWordScreen';
+import {THEME} from './src/theme';
 
 const Tab = createBottomTabNavigator();
 
@@ -38,11 +39,11 @@ export default function App() {
             }            
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'gray',
+          tabBarActiveTintColor: THEME.MAIN_COLOR,
+          tabBarInactiveTintColor: THEME.GREY_COLOR,
         })}
       >
-        <Tab.Screen name="Main" component={MainStackScreen}/>
+        <Tab.Screen name="Main" component={MainStackScreen} options={{title: "Categories", headerShown: false}}/>
         <Tab.Screen name="Learn" component={LearnWordsScreen} />
         <Tab.Screen name="AddWord" component={AddWordScreen} 
           options={{

@@ -9,6 +9,14 @@ const MainScreen = ({navigation}) => {
         title="Go to All Words"
         onPress={() => navigation.navigate('AllWords')}
       />
+      <Button
+        title="Go to Caterory Screen"
+        onPress={() => navigation.navigate('Category')}
+      />
+      <Button
+        title="Go to Word Screen"
+        onPress={() => navigation.navigate('Word')}
+      />
     </View>
   )
 }

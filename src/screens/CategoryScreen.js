@@ -1,10 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 
-const CategoryScreen = ({}) => {
+const CategoryScreen = ({navigation}) => {
   return(
     <View style={styles.center}>
       <Text>Category Screen</Text>
+      <Button
+        title="Go to Word Screen"
+        onPress={() => navigation.navigate('Word')}
+      />
     </View>
   )
 }
