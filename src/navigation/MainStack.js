@@ -11,7 +11,7 @@ import EditWordScreen from '../screens/EditWordScreen';
 
 const MainStack = createNativeStackNavigator();
 
-function MainStackScreen({navigation}) {
+function MainStackScreen({navigation}) {  
   return (
     <MainStack.Navigator screenOptions={{ 
       headerTintColor: THEME.MAIN_COLOR
@@ -29,7 +29,7 @@ function MainStackScreen({navigation}) {
       <MainStack.Screen name="Category" component={CategoryScreen} />
       <MainStack.Screen name="Word" component={WordScreen} 
         options={{
-          title: "category -> word",
+          title: 'Details',
           headerRight: (props) => (
             <View style={styles.btnContainer}>
               <Ionicons name="pencil-outline" size={25} color={THEME.MAIN_COLOR} {...props} onPress={() => navigation.navigate('Edit')}/>

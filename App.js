@@ -40,7 +40,7 @@ export default function App() {
             }            
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: THEME.MAIN_COLOR,
+          tabBarActiveTintColor: THEME.GREEN_COLOR,
           tabBarInactiveTintColor: THEME.GREY_COLOR,
         })}
       >

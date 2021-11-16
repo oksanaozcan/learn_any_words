@@ -4,8 +4,14 @@ import { DATA } from "../data";
 import WordItem from "../components/WordItem";
 
 const AllWordsScreen = ({navigation}) => {
+  
   const renderItem = ({ item }) => (
-    <WordItem word={item.word} />
+    <WordItem item={item} 
+      openWord={() => navigation.navigate('Word', 
+      {
+        wordId: item.id        
+      })}
+    />
   );
 
   return (
