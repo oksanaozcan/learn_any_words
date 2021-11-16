@@ -1,10 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 
-const AllWordsScreen = ({}) => {
+const AllWordsScreen = ({navigation}) => {
   return(
     <View style={styles.center}>
       <Text>AllWordsScreen</Text>
+      <Button
+        title="Go to Word Screen"
+        onPress={() => navigation.navigate('Word')}
+      />
     </View>
   )
 }
