@@ -1,24 +1,29 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { SafeAreaView, FlatList, StyleSheet, StatusBar } from 'react-native';
+import { DATA } from "../data";
+import WordItem from "../components/WordItem";
 
 const AllWordsScreen = ({navigation}) => {
-  return(
-    <View style={styles.center}>
-      <Text>AllWordsScreen</Text>
-      <Button
-        title="Go to Word Screen"
-        onPress={() => navigation.navigate('Word')}
+  const renderItem = ({ item }) => (
+    <WordItem word={item.word} />
+  );
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
       />
-    </View>
-  )
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-  center: {
+  container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
+    marginTop: StatusBar.currentHeight || 0,
+  }  
+});
 
 export default AllWordsScreen;

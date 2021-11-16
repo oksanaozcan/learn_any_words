@@ -21,7 +21,11 @@ function MainStackScreen({navigation}) {
           headerTitle: "Learn Any Words"          
         }}
       />
-      <MainStack.Screen name="AllWords" component={AllWordsScreen} />
+      <MainStack.Screen name="AllWords" component={AllWordsScreen} 
+        options={{
+          title: "All Words"
+        }}
+      />
       <MainStack.Screen name="Category" component={CategoryScreen} />
       <MainStack.Screen name="Word" component={WordScreen} 
         options={{

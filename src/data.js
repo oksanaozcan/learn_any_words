@@ -8,6 +8,8 @@ export const DATA = [
     category: 'animals',
     example: 'kopekler sadik hayvanlar',
     tr_example: 'собаки - преданные животные',
+    favorite: false,
+    learned: false,
     date: '11/16/2021'
   },
   {
@@ -19,6 +21,8 @@ export const DATA = [
     category: 'animals',
     example: 'kat sadik hayvanlar',
     tr_example: 'kat - преданные животные',
+    favorite: false,
+    learned: false,
     date: '11/16/2021'
   },
   {
@@ -30,6 +34,8 @@ export const DATA = [
     category: 'animals',
     example: 'gull sadik hayvanlar',
     tr_example: 'gull - преданные животные',
+    favorite: false,
+    learned: false,
     date: '11/16/2021'
   },
   {
@@ -41,6 +47,8 @@ export const DATA = [
     category: 'verbs',
     example: 'read sadik hayvanlar',
     tr_example: 'read - преданные животные',
+    favorite: false,
+    learned: false,
     date: '11/16/2021'
   },
   {
@@ -52,6 +60,8 @@ export const DATA = [
     category: 'stuff',
     example: 'table sadik hayvanlar',
     tr_example: 'table - преданные животные',
+    favorite: false,
+    learned: false,
     date: '11/16/2021'
   },
 
