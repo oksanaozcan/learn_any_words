@@ -13,7 +13,9 @@ const MainStack = createNativeStackNavigator();
 
 function MainStackScreen({navigation}) {
   return (
-    <MainStack.Navigator>
+    <MainStack.Navigator screenOptions={{ 
+      headerTintColor: THEME.MAIN_COLOR
+     }}>
       <MainStack.Screen name="Main" component={MainScreen} 
         options={{
           headerTitle: "Learn Any Words"          
@@ -40,7 +42,7 @@ function MainStackScreen({navigation}) {
 const styles = StyleSheet.create({
   btnContainer: {
     flexDirection: 'row',
-    width: 70,
+    width: 65,
     justifyContent: 'space-between'
   }
 })

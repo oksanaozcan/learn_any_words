@@ -26,6 +26,7 @@ export default function App() {
     <NavigationContainer>      
       <Tab.Navigator 
         screenOptions={({ route }) => ({
+          headerTintColor: THEME.MAIN_COLOR,          
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
             if (route.name === 'Main') {
