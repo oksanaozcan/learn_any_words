@@ -1,12 +1,14 @@
 import { bootstrap } from './src/bootstrap';
 import React, {useState} from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppLoading from 'expo-app-loading';
-import MainScreen from './src/screens/MainScreen';
-import AllWordsScreen from './src/screens/AllWordsScreen';
+import { Ionicons } from '@expo/vector-icons';
+import MainStackScreen from './src/navigation/MainStack';
+import LearnWordsScreen from './src/screens/LearnWordsScreen';
+import AddWordScreen from './src/screens/AddWordScreen';
 
-const MainStack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [isReady, setIsReady] = useState(false)
@@ -20,11 +22,35 @@ export default function App() {
     )
   }
   return (
-    <NavigationContainer>
-      <MainStack.Navigator>
-        <MainStack.Screen name="Main" component={MainScreen} options={{title: "Learn Any Words"}}/>
-        <MainStack.Screen name="AllWords" component={AllWordsScreen} options={{title: "All Words"}}/>
-      </MainStack.Navigator>
+    <NavigationContainer>      
+      <Tab.Navigator 
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            if (route.name === 'Main') {
+              iconName = focused
+                ? 'albums'
+                : 'albums-outline';
+            } else if (route.name === 'Learn') {
+              iconName = focused ? 'rocket' : 'rocket-outline';
+            }  else if (route.name === 'AddWord') {
+              iconName = focused ? 'add-circle' : 'add-circle-outline';
+            }            
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name="Main" component={MainStackScreen}/>
+        <Tab.Screen name="Learn" component={LearnWordsScreen} />
+        <Tab.Screen name="AddWord" component={AddWordScreen} 
+          options={{
+            headerTitle: "Add New Word",
+            title: 'Add Word'
+          }}
+        />
+      </Tab.Navigator>   
     </NavigationContainer>
   );
 }
