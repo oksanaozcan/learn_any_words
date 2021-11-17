@@ -1,10 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import TitleText from "../components/TitleText";
+import { THEME } from "../theme";
+import { DATA } from "../data";
 
-const MainScreen = ({navigation}) => {
+const lng = DATA.length
+
+const MainScreen = ({navigation}) => {  
   return(
-    <View style={styles.center}>
-      <Text>Main Screen</Text>
+    <View >
+      <TitleText>There are only <Text style={{ color: THEME.PINK_COLOR, fontSize: 30 }}> {lng} </Text> words in your dictionary</TitleText>
       <Button
         title="Go to All Words"
         onPress={() => navigation.navigate('AllWords')}
@@ -18,11 +23,7 @@ const MainScreen = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+  
 })
 
 export default MainScreen;
