@@ -24,7 +24,7 @@ function MainStackScreen({navigation}) {
           headerTitle: "Learn Any Words",
           headerRight: (props) => (
             <View style={styles.btnContainer}>
-              <Ionicons name="information-circle-outline" size={25} color={THEME.PINK_COLOR} {...props} onPress={() => navigation.navigate('ReadMe')}/>              
+              <Ionicons name="information-circle-outline" size={25} color={THEME.GREY_COLOR} {...props} onPress={() => navigation.navigate('ReadMe')}/>              
             </View>            
           )      
         }}

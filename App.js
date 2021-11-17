@@ -1,4 +1,5 @@
 import { bootstrap } from './src/bootstrap';
+import { Provider } from 'react-redux'
 import React, {useState} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
@@ -8,6 +9,7 @@ import MainStackScreen from './src/navigation/MainStack';
 import LearnWordsScreen from './src/screens/LearnWordsScreen';
 import AddWordScreen from './src/screens/AddWordScreen';
 import {THEME} from './src/theme';
+import store from './src/store';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,6 +25,7 @@ export default function App() {
     )
   }
   return (
+    <Provider store={store}>
     <NavigationContainer>      
       <Tab.Navigator 
         screenOptions={({ route }) => ({
@@ -54,5 +57,6 @@ export default function App() {
         />
       </Tab.Navigator>   
     </NavigationContainer>
+    </Provider>
   );
 }
