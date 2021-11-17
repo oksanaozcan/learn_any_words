@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, ScrollView } from "react-native";
 import {DATA} from '../data';
 import SubText from "../components/SubText";
 import TitleText from "../components/TitleText";
@@ -11,28 +11,40 @@ const WordScreen = ({route, navigation}) => {
   const myWord = DATA.find(word => word.id.toString() === wordId.toString());
 
   return(
-    <View style={styles.wrap}>
-      <Image style={styles.img} source={{uri: myWord.img}}/>
+    <ScrollView>    
+    <View style={styles.wrap}>      
+      <Image style={styles.img} source={{uri: myWord.img}}/>     
       <Card>
         <SubText>word:</SubText>          
         <TitleText titleStyle={styles.titleStyle}>{myWord.word}</TitleText>       
         <SubText >translate:</SubText>          
         <CommonText>{myWord.translate}</CommonText>             
       </Card>      
+      <Card>
+        <SubText>synonims:</SubText>          
+        <CommonText>{myWord.synonims}</CommonText>       
+        <SubText >category:</SubText>          
+        <CommonText>{myWord.category}</CommonText>             
+      </Card>      
+      <Card>
+        <SubText>example:</SubText>          
+        <CommonText>{myWord.example}</CommonText>       
+        <SubText >translate example:</SubText>          
+        <CommonText>{myWord.tr_example}</CommonText>             
+      </Card>    
     </View>
+    </ScrollView>    
   )
 }
 
 const styles = StyleSheet.create({
+  
   wrap: {
     padding: 20
   },
   img: {
-    width: '60%',
-    height: '35%'
-  },
-  card: {
-    
+    width: '50%',
+    height: 90
   },  
   titleStyle: {
     paddingLeft: 30
