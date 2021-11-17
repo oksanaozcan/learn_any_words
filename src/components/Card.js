@@ -11,6 +11,7 @@ const Card =(props) => {
 const styles = StyleSheet.create({
   card: {
     marginVertical: 10,
+    marginHorizontal: 15,
     padding: 10,    
     shadowColor: THEME.GREY_COLOR,
     shadowOffset: {width: 0, height: 2},

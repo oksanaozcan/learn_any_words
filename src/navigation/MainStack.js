@@ -10,6 +10,7 @@ import { View, StyleSheet } from 'react-native';
 import EditWordScreen from '../screens/EditWordScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
 import LearnedScreen from '../screens/LearnedScreen';
+import ReadMeScreen from '../screens/ReadMeScreen';
 
 const MainStack = createNativeStackNavigator();
 
@@ -20,7 +21,12 @@ function MainStackScreen({navigation}) {
      }}>
       <MainStack.Screen name="Main" component={MainScreen} 
         options={{
-          headerTitle: "Learn Any Words"          
+          headerTitle: "Learn Any Words",
+          headerRight: (props) => (
+            <View style={styles.btnContainer}>
+              <Ionicons name="information-circle-outline" size={25} color={THEME.PINK_COLOR} {...props} onPress={() => navigation.navigate('ReadMe')}/>              
+            </View>            
+          )      
         }}
       />
       <MainStack.Screen name="AllWords" component={AllWordsScreen} 
@@ -55,6 +61,11 @@ function MainStackScreen({navigation}) {
         })}          
       />
       <MainStack.Screen name={'Edit'} component={EditWordScreen}/>
+      <MainStack.Screen name="ReadMe" component={ReadMeScreen} 
+        options={({route}) => ({
+          title: 'Read Me'
+        })}
+      />      
     </MainStack.Navigator>
   );
 }
