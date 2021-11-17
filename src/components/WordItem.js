@@ -15,20 +15,20 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     backgroundColor: 'rgba(77,182,172,0.4)',
-    paddingVertical: 15,
-    paddingHorizontal: 15,
+    paddingVertical: 8,
+    paddingHorizontal: 30,
     marginVertical: 8,
     marginHorizontal: 16,
   },
   title: {
-    fontSize: 16,
+    fontSize: 12,
     fontFamily: 'OpenBold',
-    letterSpacing: 2,
+    letterSpacing: 1,
     textTransform: 'uppercase',
-    paddingEnd: 8
+    paddingEnd: 15
   },
   cat: {
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: 'OpenReg',
     textAlignVertical: 'bottom',
     color: THEME.GREY_COLOR
