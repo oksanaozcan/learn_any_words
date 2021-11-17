@@ -26,17 +26,21 @@ function MainStackScreen({navigation}) {
           title: "All Words"
         }}
       />
-      <MainStack.Screen name="Category" component={CategoryScreen} />
+      <MainStack.Screen name="Category" component={CategoryScreen} 
+        options={({route}) => ({
+          title: `${route.params.openCategory} category`
+        })}
+      />
       <MainStack.Screen name="Word" component={WordScreen} 
-        options={{
-          title: 'Details',
+        options={({route}) => ({
+          title: `${route.params.word} details`,
           headerRight: (props) => (
             <View style={styles.btnContainer}>
               <Ionicons name="pencil-outline" size={25} color={THEME.MAIN_COLOR} {...props} onPress={() => navigation.navigate('Edit')}/>
               <Ionicons name="trash-outline" size={25} color={THEME.MAIN_COLOR} {...props}/>
             </View>            
-          ),
-        }}
+          )
+        })}          
       />
       <MainStack.Screen name={'Edit'} component={EditWordScreen}/>
     </MainStack.Navigator>

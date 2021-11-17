@@ -11,7 +11,8 @@ const CategoryScreen = ({route, navigation}) => {
     <WordItem item={item} 
       openWord={() => navigation.navigate('Word', 
       {
-        wordId: item.id        
+        wordId: item.id,
+        word: item.word     
       })}
     />
   );
