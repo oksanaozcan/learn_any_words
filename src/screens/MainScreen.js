@@ -31,8 +31,8 @@ const MainScreen = ({navigation}) => {
       <TitleText titleStyle={styles.titleStyle}>There are <Text style={{ color: THEME.PINK_COLOR, fontSize: 30 }}> {lng} </Text> words in your dictionary</TitleText>
       <View style={styles.btnContainer}>
         <MyButton title="All" onPress={() => navigation.navigate('AllWords')} color={THEME.GREEN_COLOR}/>
-        <MyButton title="Favorite" onPress={() => navigation.navigate('Category')} color={THEME.PINK_COLOR}/>
-        <MyButton title="Learned" onPress={() => navigation.navigate('Category')} color={THEME.GREY_COLOR}/>
+        <MyButton title="Favorite" onPress={() => navigation.navigate('Favorite')} color={THEME.PINK_COLOR}/>
+        <MyButton title="Learned" onPress={() => navigation.navigate('Learned')} color={THEME.GREY_COLOR}/>
       </View>      
       <TitleText titleStyle={styles.titleStyle}>Your Categories: </TitleText>
       <FlatList data={uniqueCat} renderItem={renderItem}/>          

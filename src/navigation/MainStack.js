@@ -8,6 +8,8 @@ import WordScreen from '../screens/WordScreen';
 import { THEME } from '../theme';
 import { View, StyleSheet } from 'react-native';
 import EditWordScreen from '../screens/EditWordScreen';
+import FavoriteScreen from '../screens/FavoriteScreen';
+import LearnedScreen from '../screens/LearnedScreen';
 
 const MainStack = createNativeStackNavigator();
 
@@ -26,11 +28,21 @@ function MainStackScreen({navigation}) {
           title: "All Words"
         }}
       />
+      <MainStack.Screen name="Favorite" component={FavoriteScreen} 
+        options={{
+          title: "Favorite"
+        }}
+      />      
+      <MainStack.Screen name="Learned" component={LearnedScreen} 
+        options={{
+          title: "Learned words"
+        }}
+      />     
       <MainStack.Screen name="Category" component={CategoryScreen} 
         options={({route}) => ({
           title: `${route.params.openCategory} category`
         })}
-      />
+      />      
       <MainStack.Screen name="Word" component={WordScreen} 
         options={({route}) => ({
           title: `${route.params.word} details`,

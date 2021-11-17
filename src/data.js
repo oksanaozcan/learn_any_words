@@ -9,7 +9,7 @@ export const DATA = [
     example: 'kopekler sadik hayvanlar',
     tr_example: 'собаки - преданные животные',
     favorite: false,
-    learned: false,
+    learned: true,
     date: '11/16/2021'
   },
   {
@@ -21,7 +21,7 @@ export const DATA = [
     category: 'animals',
     example: 'kat sadik hayvanlar',
     tr_example: 'kat - преданные животные',
-    favorite: false,
+    favorite: true,
     learned: false,
     date: '11/16/2021'
   },
