@@ -1,1 +1,2 @@
 export const LOAD_WORDS = 'LOAD_WORDS'
+export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE'
