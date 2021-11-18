@@ -8,7 +8,7 @@ import Card from "../components/Card";
 import { Ionicons } from '@expo/vector-icons';
 import { THEME } from "../theme";
 import MyButton from "../components/MyButton";
-import { toggleFavorite } from "../store/actions/wordAction";
+import { toggleFavorite, toggleLearned } from "../store/actions/wordAction";
 
 const WordScreen = ({route, navigation}) => {
   const dispath = useDispatch()
@@ -17,6 +17,9 @@ const WordScreen = ({route, navigation}) => {
 
   const flagFav = useSelector(state => 
     state.word.favoriteWords.some(word => word.id.toString() === wordId.toString()))
+
+  const flagLearned = useSelector(state => 
+    state.word.learnedWords.some(word => word.id.toString() === wordId.toString()))
 
   const removeWord = () => 
     Alert.alert(
@@ -33,13 +36,16 @@ const WordScreen = ({route, navigation}) => {
     );
 
     const toggleFavHandler = () => {
-      dispath(toggleFavorite(wordId))
-      console.log(myWord.favorite ? 'fav true' : 'fav false')
+      dispath(toggleFavorite(wordId))      
+    }
+
+    const toggleLearnedHandler = () => {
+      dispath(toggleLearned(wordId))      
     }
 
     useEffect(() => {
       //set params if need dispatch to params
-    }, [flagFav])
+    }, [flagFav, flagLearned])
 
   return(
     <ScrollView>    
@@ -48,7 +54,7 @@ const WordScreen = ({route, navigation}) => {
         <Image style={styles.img} source={{uri: myWord.img}}/>        
         <View style={styles.iconsContainer}>
         <Ionicons name={myWord.favorite ? 'heart' : 'heart-outline'} size={25} color={myWord.favorite ? THEME.PINK_COLOR : THEME.GREY_COLOR} onPress={toggleFavHandler}/>  
-        <Ionicons name={myWord.learned ? 'school' : 'school-outline'} size={25} color={myWord.learned ? THEME.MAIN_COLOR : THEME.GREY_COLOR} onPress={() => {}}/>  
+        <Ionicons name={myWord.learned ? 'school' : 'school-outline'} size={25} color={myWord.learned ? THEME.MAIN_COLOR : THEME.GREY_COLOR} onPress={toggleLearnedHandler}/>  
         </View>
       </View>              
       <Card>
