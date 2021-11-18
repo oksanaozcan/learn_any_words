@@ -6,7 +6,7 @@ import AllWordsScreen from '../screens/AllWordsScreen';
 import CategoryScreen from '../screens/CategoryScreen';
 import WordScreen from '../screens/WordScreen';
 import { THEME } from '../theme';
-import { View, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet} from 'react-native';
 import EditWordScreen from '../screens/EditWordScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
 import LearnedScreen from '../screens/LearnedScreen';
@@ -52,17 +52,7 @@ function MainStackScreen({navigation}) {
       />      
       <MainStack.Screen name="Word" component={WordScreen} 
         options={({route}) => ({
-          title: `${route.params.word} details`,
-          // headerRight: (props) => (
-          //   <View style={styles.btnContainer}>
-          //     <Ionicons name="pencil-outline" size={25} color={THEME.GREEN_COLOR} {...props} onPress={() => navigation.navigate('Edit')}/>
-          //     <Ionicons name="trash-outline" size={25} color={THEME.PINK_COLOR} {...props} onPress={
-          //       () => console.log(JSON.stringify(route.params.wordId)) 
-                 
-          //     }
-          //     />
-          //   </View>            
-          // ),          
+          title: `${route.params.word} details`,                 
         })}          
       />
       <MainStack.Screen name={'Edit'} component={EditWordScreen}/>
@@ -76,11 +66,7 @@ function MainStackScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
-  btnContainer: {
-    flexDirection: 'row',
-    width: 65,
-    justifyContent: 'space-between'
-  }
+  
 })
 
 export default MainStackScreen;
