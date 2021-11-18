@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { View, StyleSheet, Image, ScrollView } from "react-native";
 import SubText from "../components/SubText";
 import TitleText from "../components/TitleText";

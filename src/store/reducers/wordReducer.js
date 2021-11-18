@@ -4,8 +4,7 @@ const initialState = {
   categories: [],
   allWords: [],  
   favoriteWords: [],
-  learnedWords: [],
-  // categoryWords: [],
+  learnedWords: []  
 }
 
 const wordReducer = (state = initialState, action) => {
@@ -18,8 +17,7 @@ const wordReducer = (state = initialState, action) => {
       }).flat(2).filter((v, i, a) => a.indexOf(v) === i).filter(elem => elem !== 'category'),
       allWords: action.payload,      
       favoriteWords: action.payload.filter(word => word.favorite),
-      learnedWords: action.payload.filter(word => word.learned),
-      // categoryWords: allWords.filter(word => word.category === action.payload),
+      learnedWords: action.payload.filter(word => word.learned)      
     }
     case TOGGLE_FAVORITE: 
       const allWords = state.allWords.map(word => {
@@ -33,8 +31,7 @@ const wordReducer = (state = initialState, action) => {
         categories: allWords.map(obj => {return Object.entries(obj).filter(item => item.includes('category'))}).flat(2).filter((v, i, a) => a.indexOf(v) === i).filter(elem => elem !== 'category'),
         allWords, 
         favoriteWords: allWords.filter(word => word.favorite),
-        learnedWords: allWords.filter(word => word.learned),
-         // categoryWords: 
+        learnedWords: allWords.filter(word => word.learned)
       }
     default: 
       return state
