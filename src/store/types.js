@@ -1,3 +1,4 @@
 export const LOAD_WORDS = 'LOAD_WORDS'
 export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE'
 export const TOGGLE_LEARNED = 'TOGGLE_LEARNED'
+export const REMOVE_WORD = 'REMOVE_WORD'

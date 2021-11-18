@@ -8,7 +8,7 @@ import Card from "../components/Card";
 import { Ionicons } from '@expo/vector-icons';
 import { THEME } from "../theme";
 import MyButton from "../components/MyButton";
-import { toggleFavorite, toggleLearned } from "../store/actions/wordAction";
+import { toggleFavorite, toggleLearned, removeWord } from "../store/actions/wordAction";
 
 const WordScreen = ({route, navigation}) => {
   const dispath = useDispatch()
@@ -21,7 +21,7 @@ const WordScreen = ({route, navigation}) => {
   const flagLearned = useSelector(state => 
     state.word.learnedWords.some(word => word.id.toString() === wordId.toString()))
 
-  const removeWord = () => 
+  const removeWordHandler = () => 
     Alert.alert(
       `Remove ${myWord.word}`,
       "Do you really want to remove this word? This action cannot be undone!",
@@ -31,7 +31,9 @@ const WordScreen = ({route, navigation}) => {
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "Delete", onPress: () => console.log("OK Pressed") }
+        { text: "Delete", onPress: () => {
+          navigation.goBack()
+          dispath(removeWord(wordId))}}
       ]
     );
 
@@ -39,13 +41,17 @@ const WordScreen = ({route, navigation}) => {
       dispath(toggleFavorite(wordId))      
     }
 
-    const toggleLearnedHandler = () => {
+    const toggleLearnedHandler = () => {    
       dispath(toggleLearned(wordId))      
     }
 
     useEffect(() => {
       //set params if need dispatch to params
     }, [flagFav, flagLearned])
+
+    if (!myWord) {
+      return null
+    }
 
   return(
     <ScrollView>    
@@ -78,7 +84,7 @@ const WordScreen = ({route, navigation}) => {
     </View>
     <View style={styles.btnContainer}>
       <MyButton title="edit" onPress={() => navigation.navigate('Edit')} color={THEME.GREEN_COLOR}/>
-      <MyButton title="delete" onPress={removeWord} color={THEME.PINK_COLOR}/>
+      <MyButton title="delete" onPress={removeWordHandler} color={THEME.PINK_COLOR}/>
     </View>
     </ScrollView>    
   )
