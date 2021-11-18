@@ -1,6 +1,6 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { View, StyleSheet, Image, ScrollView } from "react-native";
-import {DATA} from '../data';
 import SubText from "../components/SubText";
 import TitleText from "../components/TitleText";
 import CommonText from "../components/CommonText";
@@ -8,7 +8,7 @@ import Card from "../components/Card";
 
 const WordScreen = ({route, navigation}) => {
   const {wordId} = route.params;
-  const myWord = DATA.find(word => word.id.toString() === wordId.toString());
+  const myWord = useSelector(state => state.word.allWords.find(item => item.id.toString() === wordId.toString()))  
 
   return(
     <ScrollView>    
