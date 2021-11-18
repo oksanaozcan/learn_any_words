@@ -1,16 +1,31 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { View, StyleSheet, Image, ScrollView } from "react-native";
+import { View, StyleSheet, Image, ScrollView, Alert } from "react-native";
 import SubText from "../components/SubText";
 import TitleText from "../components/TitleText";
 import CommonText from "../components/CommonText";
 import Card from "../components/Card";
 import { Ionicons } from '@expo/vector-icons';
 import { THEME } from "../theme";
+import MyButton from "../components/MyButton";
 
 const WordScreen = ({route, navigation}) => {
   const {wordId} = route.params;
   const myWord = useSelector(state => state.word.allWords.find(item => item.id.toString() === wordId.toString()))  
+
+  const removeWord = () => 
+    Alert.alert(
+      `Remove ${myWord.word}`,
+      "Do you really want to remove this word? This action cannot be undone!",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Delete", onPress: () => console.log("OK Pressed") }
+      ]
+    );
 
   return(
     <ScrollView>    
@@ -41,6 +56,10 @@ const WordScreen = ({route, navigation}) => {
         <CommonText>{myWord.tr_example}</CommonText>             
       </Card>        
     </View>
+    <View style={styles.btnContainer}>
+      <MyButton title="edit" onPress={() => navigation.navigate('Edit')} color={THEME.GREEN_COLOR}/>
+      <MyButton title="delete" onPress={removeWord} color={THEME.PINK_COLOR}/>
+    </View>
     </ScrollView>    
   )
 }
@@ -69,6 +88,11 @@ const styles = StyleSheet.create({
     width: '20%',
     justifyContent: 'space-between'
   },  
+  btnContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 15
+  }
   
 })
 

@@ -6,7 +6,7 @@ import AllWordsScreen from '../screens/AllWordsScreen';
 import CategoryScreen from '../screens/CategoryScreen';
 import WordScreen from '../screens/WordScreen';
 import { THEME } from '../theme';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import EditWordScreen from '../screens/EditWordScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
 import LearnedScreen from '../screens/LearnedScreen';
@@ -15,6 +15,21 @@ import ReadMeScreen from '../screens/ReadMeScreen';
 const MainStack = createNativeStackNavigator();
 
 function MainStackScreen({navigation}) {  
+
+  const removeWord = () => 
+    Alert.alert(
+      `Remove word`,
+      "Do you really want to remove this word? This action cannot be undone!",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Delete", onPress: () => console.log("OK Pressed") }
+      ]
+    );
+
   return (
     <MainStack.Navigator screenOptions={{ 
       headerTintColor: THEME.MAIN_COLOR
@@ -55,7 +70,11 @@ function MainStackScreen({navigation}) {
           headerRight: (props) => (
             <View style={styles.btnContainer}>
               <Ionicons name="pencil-outline" size={25} color={THEME.GREEN_COLOR} {...props} onPress={() => navigation.navigate('Edit')}/>
-              <Ionicons name="trash-outline" size={25} color={THEME.PINK_COLOR} {...props} onPress={() => console.log(JSON.stringify(route.params.wordId)) }/>
+              <Ionicons name="trash-outline" size={25} color={THEME.PINK_COLOR} {...props} onPress={
+                // () => console.log(JSON.stringify(route.params.wordId)) 
+                removeWord
+                }
+              />
             </View>            
           ),          
         })}          
