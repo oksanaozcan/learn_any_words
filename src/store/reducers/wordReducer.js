@@ -1,11 +1,11 @@
 import { LOAD_WORDS } from "../types";
 
 const initialState = {
+  categories: [],
   allWords: [],  
   favoriteWords: [],
   learnedWords: [],
-  categoryWords: [],
-  categories: []
+  // categoryWords: [],
 }
 
 const wordReducer = (state = initialState, action) => {
@@ -13,11 +13,13 @@ const wordReducer = (state = initialState, action) => {
     case LOAD_WORDS: 
     return {
       ...state, 
+      categories: action.payload.map(obj => {
+        return Object.entries(obj).filter(item => item.includes('category'))
+      }).flat(2).filter((v, i, a) => a.indexOf(v) === i).filter(elem => elem !== 'category'),
       allWords: action.payload,      
       favoriteWords: action.payload.filter(word => word.favorite),
       learnedWords: action.payload.filter(word => word.learned),
-      categoryWords: allWords.filter(word => word.category === action.payload),
-      categories: ['animals', 'verbs', 'stuff']
+      // categoryWords: allWords.filter(word => word.category === action.payload),
     }
     default: 
       return state

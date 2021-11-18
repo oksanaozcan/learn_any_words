@@ -1,20 +1,13 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loadWords } from "../store/actions/wordAction";
 import { View, Text, StyleSheet, Button, SafeAreaView, FlatList } from "react-native";
 import SubText from "../components/SubText";
 import TitleText from "../components/TitleText";
 import { THEME } from "../theme";
-import { DATA } from "../data";
 import CategoryItem from "../components/CategoryItem";
 import MyButton from "../components/MyButton";
 import Card from "../components/Card";
-
-const lng = DATA.length;
-
-const allCategories = [];
-DATA.forEach(obj => {
-  allCategories.push(obj.category);   
-});
-const uniqueCat = [...new Set(allCategories)];
 
 const MainScreen = ({navigation}) => { 
   const renderItem = ({item}) => {
@@ -27,11 +20,19 @@ const MainScreen = ({navigation}) => {
       />
     )
   }
+  
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(loadWords())
+  }, [])
+
+  const allCategories = useSelector(state => state.word.categories)
+
   return(
     <SafeAreaView>
     <View >
       <Card>
-        <SubText>There are words in your dictionary: <Text style={styles.lengthText}> {lng} </Text></SubText>        
+        <SubText>There are words in your dictionary: <Text style={styles.lengthText}> -5- </Text></SubText>        
       </Card>      
       <View style={styles.btnContainer}>
         <MyButton title="All" onPress={() => navigation.navigate('AllWords')} color={THEME.GREEN_COLOR}/>
@@ -39,7 +40,7 @@ const MainScreen = ({navigation}) => {
         <MyButton title="Learned" onPress={() => navigation.navigate('Learned')} color={THEME.GREY_COLOR}/>
       </View>      
       <TitleText titleStyle={styles.titleStyle}>Your Categories: </TitleText>
-      <FlatList data={uniqueCat} renderItem={renderItem}/>          
+      <FlatList data={allCategories} renderItem={renderItem}/>          
     </View>
     </SafeAreaView>
   )
