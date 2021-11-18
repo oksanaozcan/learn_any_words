@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, FlatList, StatusBar } from "react-native";
+import { StyleSheet, SafeAreaView, FlatList } from "react-native";
+import { useSelector } from "react-redux";
 import { DATA } from "../data";
 import WordItem from "../components/WordItem";
 
@@ -17,10 +18,12 @@ const LearnedScreen = ({navigation}) => {
     />
   );
 
+  const learnedWords = useSelector(state => state.word.learnedWords)
+
   return(
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <FlatList
-        data={myLearned}
+        data={learnedWords}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
