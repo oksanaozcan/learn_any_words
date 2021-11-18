@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback} from "react";
+import React, {useEffect, useLayoutEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { View, StyleSheet, Image, ScrollView, Alert } from "react-native";
 import SubText from "../components/SubText";
@@ -50,8 +50,21 @@ const WordScreen = ({route, navigation}) => {
     }, [flagFav, flagLearned])
 
     if (!myWord) {
+      navigation.goBack()
       return null
     }
+
+    useLayoutEffect(() => {
+      navigation.setOptions({
+        headerRight: () => (
+          <View style={styles.headericonContainer}>
+            <Ionicons name="pencil-outline" size={25} color={THEME.GREEN_COLOR} onPress={() => navigation.navigate('Edit')}/>
+            <Ionicons name="trash-outline" size={25} color={THEME.PINK_COLOR} onPress={removeWordHandler}
+            />
+          </View>            
+        ),   
+      });
+    }, [navigation]);
 
   return(
     <ScrollView>    
@@ -118,6 +131,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 15
+  },
+  headericonContainer: {
+    flexDirection: 'row',
+    width: 65,
+    justifyContent: 'space-between'
   }
   
 })

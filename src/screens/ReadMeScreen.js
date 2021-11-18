@@ -21,7 +21,7 @@ const ReadMeScreen = ({navigation}) => {
       <CommonText>Здесь в будузем будет небольшая инфа и приложении и инструкция к нему. А сейчас буду сюда вписывать задачи и проблемы которые нужно будет не забыть решить</CommonText>
       <View>
         <TitleText>Problems: </TitleText>
-        <CommonText>navigation icon btn edit and trash</CommonText>
+        <CommonText>bug with remove post!!!!!</CommonText>
         <CommonText>Count: {count}</CommonText>
       </View>
     </View>
