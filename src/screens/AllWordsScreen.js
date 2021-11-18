@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView, FlatList, StyleSheet, StatusBar } from 'react-native';
-import { DATA } from "../data";
+import { useSelector } from "react-redux";
 import WordItem from "../components/WordItem";
 
 const AllWordsScreen = ({navigation}) => {
@@ -15,10 +15,12 @@ const AllWordsScreen = ({navigation}) => {
     />
   );
 
+  const allWords = useSelector(state => state.word.allWords)
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={DATA}
+        data={allWords}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />

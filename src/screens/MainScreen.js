@@ -24,7 +24,7 @@ const MainScreen = ({navigation}) => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(loadWords())
-  }, [])
+  }, [dispatch])
 
   const allCategories = useSelector(state => state.word.categories)
   const wordsLength = useSelector(state => state.word.allWords).length
