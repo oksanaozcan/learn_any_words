@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, {useEffect, useCallback} from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { View, StyleSheet, Image, ScrollView, Alert } from "react-native";
 import SubText from "../components/SubText";
 import TitleText from "../components/TitleText";
@@ -8,10 +8,15 @@ import Card from "../components/Card";
 import { Ionicons } from '@expo/vector-icons';
 import { THEME } from "../theme";
 import MyButton from "../components/MyButton";
+import { toggleFavorite } from "../store/actions/wordAction";
 
 const WordScreen = ({route, navigation}) => {
+  const dispath = useDispatch()
   const {wordId} = route.params;
   const myWord = useSelector(state => state.word.allWords.find(item => item.id.toString() === wordId.toString()))  
+
+  const flagFav = useSelector(state => 
+    state.word.favoriteWords.some(word => word.id.toString() === wordId.toString()))
 
   const removeWord = () => 
     Alert.alert(
@@ -27,13 +32,22 @@ const WordScreen = ({route, navigation}) => {
       ]
     );
 
+    const toggleFavHandler = () => {
+      dispath(toggleFavorite(wordId))
+      console.log(myWord.favorite ? 'fav true' : 'fav false')
+    }
+
+    useEffect(() => {
+      //set params if need dispatch to params
+    }, [flagFav])
+
   return(
     <ScrollView>    
     <View style={styles.wrap}> 
       <View style={styles.imgIconsWrap}>
         <Image style={styles.img} source={{uri: myWord.img}}/>        
         <View style={styles.iconsContainer}>
-        <Ionicons name={myWord.favorite ? 'heart' : 'heart-outline'} size={25} color={myWord.favorite ? THEME.PINK_COLOR : THEME.GREY_COLOR} onPress={() =>{}}/>  
+        <Ionicons name={myWord.favorite ? 'heart' : 'heart-outline'} size={25} color={myWord.favorite ? THEME.PINK_COLOR : THEME.GREY_COLOR} onPress={toggleFavHandler}/>  
         <Ionicons name={myWord.learned ? 'school' : 'school-outline'} size={25} color={myWord.learned ? THEME.MAIN_COLOR : THEME.GREY_COLOR} onPress={() => {}}/>  
         </View>
       </View>              
