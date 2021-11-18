@@ -16,20 +16,6 @@ const MainStack = createNativeStackNavigator();
 
 function MainStackScreen({navigation}) {  
 
-  const removeWord = () => 
-    Alert.alert(
-      `Remove word`,
-      "Do you really want to remove this word? This action cannot be undone!",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "Delete", onPress: () => console.log("OK Pressed") }
-      ]
-    );
-
   return (
     <MainStack.Navigator screenOptions={{ 
       headerTintColor: THEME.MAIN_COLOR
@@ -71,8 +57,8 @@ function MainStackScreen({navigation}) {
             <View style={styles.btnContainer}>
               <Ionicons name="pencil-outline" size={25} color={THEME.GREEN_COLOR} {...props} onPress={() => navigation.navigate('Edit')}/>
               <Ionicons name="trash-outline" size={25} color={THEME.PINK_COLOR} {...props} onPress={
-                // () => console.log(JSON.stringify(route.params.wordId)) 
-                removeWord
+                () => console.log(JSON.stringify(route.params.wordId)) 
+                // removeWord
                 }
               />
             </View>            

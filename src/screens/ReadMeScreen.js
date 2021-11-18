@@ -1,9 +1,19 @@
-import React from "react";
-import { SafeAreaView, ScrollView, View} from "react-native";
+import React, {useState, useLayoutEffect} from "react";
+import { SafeAreaView, ScrollView, View, Button} from "react-native";
 import CommonText from "../components/CommonText";
 import TitleText from "../components/TitleText";
 
-const ReadMeScreen = () => {
+const ReadMeScreen = ({navigation}) => {
+  const [count, setCount] = useState(0);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button onPress={() => setCount(c => c + 1)} title="Update count" />
+      ),
+    });
+  }, [navigation]);
+
   return(
     <SafeAreaView>
     <ScrollView>
@@ -12,6 +22,7 @@ const ReadMeScreen = () => {
       <View>
         <TitleText>Problems: </TitleText>
         <CommonText>navigation icon btn edit and trash</CommonText>
+        <CommonText>Count: {count}</CommonText>
       </View>
     </View>
     </ScrollView>
