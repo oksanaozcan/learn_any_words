@@ -10,12 +10,12 @@ import MyButton from "../components/MyButton";
 import Card from "../components/Card";
 
 const MainScreen = ({navigation}) => { 
-  const renderItem = ({item}) => {
+  const renderItem = ({item}) => {    
     return(
       <CategoryItem item={item} 
       openCategory={() => navigation.navigate('Category', 
       {
-        openCategory: item        
+        openCategory: item,         
       })}
       />
     )
@@ -24,10 +24,20 @@ const MainScreen = ({navigation}) => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(loadWords())
-  }, [dispatch])
+  }, [dispatch, allCategories])
 
   const allCategories = useSelector(state => state.word.categories)
   const wordsLength = useSelector(state => state.word.allWords).length
+
+  if(wordsLength == 0) {
+    navigation.navigate("Main")
+    return (
+      <View style={styles.nullLength}>
+        <TitleText titleStyle={styles.titleStyle}>You dont have words anymore</TitleText>
+        <MyButton title="Add Word" onPress={() => navigation.navigate('AddWord')} color={THEME.GREEN_COLOR}/>
+      </View>    
+    )
+  }
 
   return(
     <SafeAreaView>
@@ -47,7 +57,7 @@ const MainScreen = ({navigation}) => {
   )
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({  
   btnContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -60,6 +70,16 @@ const styles = StyleSheet.create({
     color: THEME.PINK_COLOR, 
     fontSize: 30,
     paddingLeft: 30
+  },
+  nullLength: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 30    
+  },
+  titleStyle: {
+    textAlign: 'center',
+    paddingBottom: 20
   }
 })
 

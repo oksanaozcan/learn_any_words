@@ -17,6 +17,10 @@ const CategoryScreen = ({route, navigation}) => {
     />
   );
 
+  if (myCategory.length == 0) {
+    navigation.navigate('Main')
+  }
+
   return(
     <SafeAreaView style={styles.container}>
       <FlatList
