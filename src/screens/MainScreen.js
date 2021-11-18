@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadWords } from "../store/actions/wordAction";
-import { View, Text, StyleSheet, Button, SafeAreaView, FlatList } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, FlatList } from "react-native";
 import SubText from "../components/SubText";
 import TitleText from "../components/TitleText";
 import { THEME } from "../theme";
@@ -27,12 +27,13 @@ const MainScreen = ({navigation}) => {
   }, [])
 
   const allCategories = useSelector(state => state.word.categories)
+  const wordsLength = useSelector(state => state.word.allWords).length
 
   return(
     <SafeAreaView>
     <View >
       <Card>
-        <SubText>There are words in your dictionary: <Text style={styles.lengthText}> -5- </Text></SubText>        
+        <SubText>There are words in your dictionary: <Text style={styles.lengthText}> - {wordsLength} - </Text></SubText>        
       </Card>      
       <View style={styles.btnContainer}>
         <MyButton title="All" onPress={() => navigation.navigate('AllWords')} color={THEME.GREEN_COLOR}/>
