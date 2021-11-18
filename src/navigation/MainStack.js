@@ -54,10 +54,10 @@ function MainStackScreen({navigation}) {
           title: `${route.params.word} details`,
           headerRight: (props) => (
             <View style={styles.btnContainer}>
-              <Ionicons name="pencil-outline" size={25} color={THEME.MAIN_COLOR} {...props} onPress={() => navigation.navigate('Edit')}/>
-              <Ionicons name="trash-outline" size={25} color={THEME.MAIN_COLOR} {...props}/>
+              <Ionicons name="pencil-outline" size={25} color={THEME.GREEN_COLOR} {...props} onPress={() => navigation.navigate('Edit')}/>
+              <Ionicons name="trash-outline" size={25} color={THEME.PINK_COLOR} {...props} onPress={() => console.log(JSON.stringify(route.params.wordId)) }/>
             </View>            
-          )
+          ),          
         })}          
       />
       <MainStack.Screen name={'Edit'} component={EditWordScreen}/>
