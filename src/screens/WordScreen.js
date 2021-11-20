@@ -33,21 +33,22 @@ const WordScreen = ({route, navigation}) => {
         },
         { text: "Delete", onPress: () => {
           navigation.goBack()
-          dispath(removeWord(wordId))}}
+          dispath(removeWord(wordId))          
+        }}          
       ]
     );
 
     const toggleFavHandler = () => {
-      dispath(toggleFavorite(wordId))      
+      dispath(toggleFavorite(myWord))      
     }
 
     const toggleLearnedHandler = () => {    
-      dispath(toggleLearned(wordId))      
+      dispath(toggleLearned(myWord))      
     }
 
     useEffect(() => {
       //set params if need dispatch to params
-    }, [flagFav, flagLearned])
+    }, [flagFav, flagLearned, myWord])
 
     if (!myWord) {
       navigation.goBack()

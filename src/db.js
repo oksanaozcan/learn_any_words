@@ -28,6 +28,58 @@ class DB {
       })
     })
   }
+
+  static createWord({word, translate, img, synonims, category, example, tr_example, favorite, learned, date}) {
+    return new Promise((resolve, reject) => {
+      db.transaction(tx => {
+        tx.executeSql(
+          `INSERT INTO words (word, translate, img, synonims, category, example, tr_example, favorite, learned, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [word, translate, img, synonims, category, example, tr_example, 0, 0, date],
+          (_, result) => resolve(result.insertId),
+          (_, error) => reject(error)
+        )
+      })
+    })
+  }
+
+  static updateFavorite(word) {
+    return new Promise((resolve, reject) => {
+      db.transaction(tx => {
+        tx.executeSql(
+          'UPDATE words SET favorite = ? WHERE id = ?',
+          [word.favorite ? 0 : 1, word.id],
+          resolve,
+          (_, error) => reject(error)
+        )
+      })
+    })    
+  }
+
+  static updateLearned(word) {
+    return new Promise((resolve, reject) => {
+      db.transaction(tx => {
+        tx.executeSql(
+          'UPDATE words SET learned = ? WHERE id = ?',
+          [word.learned ? 0 : 1, word.id],
+          resolve,
+          (_, error) => reject(error)
+        )
+      })
+    })    
+  }
+
+  static removeWord(id) {
+    return new Promise((resolve, reject) => {
+      db.transaction(tx => {
+        tx.executeSql(
+          'DELETE FROM words WHERE id = ?',
+          [id],
+          resolve,
+          (_, error) => reject(error)
+        )
+      })
+    })    
+  }
 }
 
 export default DB;

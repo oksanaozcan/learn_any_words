@@ -37,7 +37,7 @@ const MainScreen = ({navigation}) => {
         <MyButton title="Add Word" onPress={() => navigation.navigate('AddWord')} color={THEME.GREEN_COLOR}/>
       </View>    
     )
-  }
+  } 
 
   return(
     <SafeAreaView>
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   titleStyle: {
     textAlign: 'center',
     paddingBottom: 20
-  }
+  }  
 })
 
 export default MainScreen;

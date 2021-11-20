@@ -26,8 +26,7 @@ export default function PhotoPicker({photoPickerHandler}) {
 
     if (!result.cancelled) {
       setImage(result.uri);
-      photoPickerHandler(result.uri);
-      setImage(null)
+      photoPickerHandler(result.uri);      
     }
   };
 

@@ -12,31 +12,50 @@ export const loadWords = () => {
   }  
 }
 
-export const toggleFavorite = id => {
-  return {
+export const toggleFavorite = word => async dispatch => {
+  await DB.updateFavorite(word)
+  dispatch({
     type: TOGGLE_FAVORITE,
-    payload: id
-  }
+    payload: word.id
+  })
 }
 
-export const toggleLearned = id => {
-  return {
+export const toggleLearned = word => async dispatch => {
+  await DB.updateLearned(word)
+  dispatch({
     type: TOGGLE_LEARNED,
-    payload: id
-  }
+    payload: word.id
+  })
 }
 
-export const removeWord = id => {
-  return {
+export const removeWord = id => async dispatch => {
+  await DB.removeWord(id)
+  dispatch( {
     type: REMOVE_WORD,
     payload: id
-  }
+  })
 }
 
 export const addWord = newWord => async dispatch => {
+  const fileName = newWord.img.split('/').pop()
+  const newPath = FileSystem.documentDirectory + fileName
+
+  try {
+    await FileSystem.moveAsync({
+      to: newPath,
+      from: newWord.img
+    })
+  } catch (e) {
+    console.log(e)
+  }
+  
+  const payload = {...newWord, img: newPath}
+  const id = await DB.createWord(payload)
+
+  payload.id = id
   
   dispatch({
     type: ADD_WORD,
-    payload: newWord
+    payload
   })
 }
