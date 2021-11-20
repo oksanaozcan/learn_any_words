@@ -1,4 +1,3 @@
-import * as FileSystem from 'expo-file-system';
 import DB from "../../db";
 import { LOAD_WORDS, TOGGLE_FAVORITE, TOGGLE_LEARNED, REMOVE_WORD, ADD_WORD } from "../types";
 
