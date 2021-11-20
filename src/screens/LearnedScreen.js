@@ -1,12 +1,9 @@
 import React from "react";
 import { StyleSheet, SafeAreaView, FlatList } from "react-native";
 import { useSelector } from "react-redux";
-import { DATA } from "../data";
 import WordItem from "../components/WordItem";
 
-const LearnedScreen = ({navigation}) => {
-  
-  const myLearned = DATA.filter(obj => obj.learned);  
+const LearnedScreen = ({navigation}) => {  
 
   const renderItem = ({ item }) => (
     <WordItem item={item} 
