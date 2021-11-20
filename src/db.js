@@ -7,7 +7,7 @@ class DB {
     return new Promise((resolve, reject) => {
       db.transaction(tx => {
         tx.executeSql(
-          'CREATE TABLE IF NOT EXISTS words (id INTEGER PRIMARY KEY NOT NULL, word TEXT NOT NULL, translate TEXT, img TEXT, synonims TEXT, category TEXT, example TEXT, tr_example TEXT, favorite INT, learned INT, date TEXT)',
+          'CREATE TABLE IF NOT EXISTS words (id INTEGER PRIMARY KEY NOT NULL, word TEXT NOT NULL, translate TEXT, synonims TEXT, category TEXT, example TEXT, tr_example TEXT, favorite INT, learned INT, date TEXT)',
           [],
           resolve,
           (_, error) => reject(error)
@@ -29,12 +29,12 @@ class DB {
     })
   }
 
-  static createWord({word, translate, img, synonims, category, example, tr_example, date}) {
+  static createWord({word, translate, synonims, category, example, tr_example, date}) {
     return new Promise((resolve, reject) => {
       db.transaction(tx => {
         tx.executeSql(
-          `INSERT INTO words (word, translate, img, synonims, category, example, tr_example, favorite, learned, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-          [word, translate, img, synonims, category, example, tr_example, 0, 0, date],
+          `INSERT INTO words (word, translate, synonims, category, example, tr_example, favorite, learned, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [word, translate, synonims, category, example, tr_example, 0, 0, date],
           (_, result) => resolve(result.insertId),
           (_, error) => reject(error)
         )

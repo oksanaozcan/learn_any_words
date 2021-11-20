@@ -1,6 +1,6 @@
 import React, {useEffect, useLayoutEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { View, StyleSheet, Image, ScrollView, Alert } from "react-native";
+import { View, StyleSheet, ScrollView, Alert } from "react-native";
 import SubText from "../components/SubText";
 import TitleText from "../components/TitleText";
 import CommonText from "../components/CommonText";
@@ -70,8 +70,7 @@ const WordScreen = ({route, navigation}) => {
   return(
     <ScrollView>    
     <View style={styles.wrap}> 
-      <View style={styles.imgIconsWrap}>
-        <Image style={styles.img} source={{uri: myWord.img}}/>        
+      <View style={styles.imgIconsWrap}>               
         <View style={styles.iconsContainer}>
         <Ionicons name={myWord.favorite ? 'heart' : 'heart-outline'} size={25} color={myWord.favorite ? THEME.PINK_COLOR : THEME.GREY_COLOR} onPress={toggleFavHandler}/>  
         <Ionicons name={myWord.learned ? 'school' : 'school-outline'} size={25} color={myWord.learned ? THEME.MAIN_COLOR : THEME.GREY_COLOR} onPress={toggleLearnedHandler}/>  

@@ -37,19 +37,7 @@ export const removeWord = id => async dispatch => {
 }
 
 export const addWord = newWord => async dispatch => {
-  const fileName = newWord.img.split('/').pop()
-  const newPath = FileSystem.documentDirectory + fileName
-
-  try {
-    await FileSystem.moveAsync({
-      to: newPath,
-      from: newWord.img
-    })
-  } catch (e) {
-    console.log(e)
-  }
-  
-  const payload = {...newWord, img: newPath}
+  const payload = {...newWord}
   const id = await DB.createWord(payload)
 
   payload.id = id

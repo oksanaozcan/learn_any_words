@@ -7,26 +7,19 @@ import Card from "../components/Card";
 import MyButton from "../components/MyButton";
 import { THEME } from "../theme";
 import { addWord } from "../store/actions/wordAction";
-import PhotoPicker from "../components/PhotoPikcer";
 
 const AddWordScreen = ({navigation}) => {
   const dispatch = useDispatch()
-  const [newWord, setNewWord] = useState('')
-  const [img, setImg] = useState(null)
+  const [newWord, setNewWord] = useState('') 
   const [newTranslate, setNewTranslate] = useState('')
   const [synonims, setSynonims] = useState('')
   const [newCategory, setNewCategory] = useState('')
   const [newExample, setNewExample] = useState('')
   const [newTranslateEx, setNewTranslateEx] = useState('')
 
-  const photoPickerHandler = uri => {    
-    setImg(uri)
-  }
-
   const saveWordHandler = () => {
     const myWord = {
-      word: newWord,
-      img: img,
+      word: newWord,      
       translate: newTranslate,
       synonims: synonims,
       category: newCategory,
@@ -53,10 +46,7 @@ const AddWordScreen = ({navigation}) => {
       <View style={styles.container}>
       <TitleText titleStyle={styles.titleStyle}>Add New Word for learning</TitleText>
       </View>
-    <View style={styles.wrap}> 
-      <View style={styles.imgIconsWrap}>
-      <PhotoPicker photoPickerHandler={photoPickerHandler} />                
-      </View>              
+    <View style={styles.wrap}>                   
       <Card>
         <SubText>word*:</SubText>    
         <TextInput style={styles.textinput} 
