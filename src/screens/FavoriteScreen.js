@@ -1,13 +1,10 @@
 import React from "react";
 import { StyleSheet, SafeAreaView, FlatList } from "react-native";
 import { useSelector } from "react-redux";
-import { DATA } from "../data";
 import WordItem from "../components/WordItem";
 
 const FavoriteScreen = ({navigation}) => {
   
-  const myFavorite = DATA.filter(obj => obj.favorite);  
-
   const renderItem = ({ item }) => (
     <WordItem item={item} 
       openWord={() => navigation.navigate('Word', 

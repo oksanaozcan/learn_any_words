@@ -29,7 +29,7 @@ class DB {
     })
   }
 
-  static createWord({word, translate, img, synonims, category, example, tr_example, favorite, learned, date}) {
+  static createWord({word, translate, img, synonims, category, example, tr_example, date}) {
     return new Promise((resolve, reject) => {
       db.transaction(tx => {
         tx.executeSql(

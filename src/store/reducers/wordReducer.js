@@ -28,10 +28,10 @@ const wordReducer = (state = initialState, action) => {
       })
       return {
         ...state, 
-        categories: allWords.map(obj => {return Object.entries(obj).filter(item => item.includes('category'))}).flat(2).filter((v, i, a) => a.indexOf(v) === i).filter(elem => elem !== 'category'),
+        categories: state.allWords.map(obj => {return Object.entries(obj).filter(item => item.includes('category'))}).flat(2).filter((v, i, a) => a.indexOf(v) === i).filter(elem => elem !== 'category'),
         allWords, 
-        favoriteWords: allWords.filter(word => word.favorite),
-        learnedWords: allWords.filter(word => word.learned)
+        favoriteWords: state.allWords.filter(word => word.favorite),
+        learnedWords: state.allWords.filter(word => word.learned)
       }
       case TOGGLE_LEARNED: 
       const allWordsLearned = state.allWords.map(word => {

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, StyleSheet, ScrollView, Image, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { View, StyleSheet, ScrollView, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useDispatch } from "react-redux";
 import TitleText from "../components/TitleText";
 import SubText from "../components/SubText";
@@ -37,8 +37,7 @@ const AddWordScreen = ({navigation}) => {
       date: new Date().toJSON()
     }
     dispatch(addWord(myWord))
-    setNewWord('')
-    setImg(null)
+    setNewWord('')    
     setNewTranslate('')
     setSynonims('')
     setNewCategory('')
