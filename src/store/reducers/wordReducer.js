@@ -7,6 +7,13 @@ const initialState = {
   learnedWords: []  
 }
 
+function createAllCategories(array) {
+  const newarray = array.map(obj => {
+    return Object.entries(obj).filter(item => item.includes('category'))
+  }).flat(2).filter((v, i, a) => a.indexOf(v) === i).filter(elem => elem !== 'category');
+  return newarray
+}
+
 const wordReducer = (state = initialState, action) => {
   switch (action.type) {    
     case LOAD_WORDS: 

@@ -29,6 +29,8 @@ const MainScreen = ({navigation}) => {
   const allCategories = useSelector(state => state.word.categories)
   const wordsLength = useSelector(state => state.word.allWords).length
 
+  console.log(allCategories)
+
   if(wordsLength == 0) {
     navigation.navigate("Main")
     return (
