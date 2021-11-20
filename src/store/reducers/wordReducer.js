@@ -1,4 +1,4 @@
-import { LOAD_WORDS, TOGGLE_FAVORITE, TOGGLE_LEARNED, REMOVE_WORD } from "../types";
+import { LOAD_WORDS, TOGGLE_FAVORITE, TOGGLE_LEARNED, REMOVE_WORD, ADD_WORD } from "../types";
 
 const initialState = {
   categories: [],
@@ -55,6 +55,14 @@ const wordReducer = (state = initialState, action) => {
           favoriteWords: state.allWords.filter(word => word.favorite),
           learnedWords: state.allWords.filter(word => word.learned)
         }
+      case ADD_WORD: 
+      return {
+        ...state,        
+        allWords: [...state.allWords, {...action.payload}],
+        categories: state.allWords.map(obj => {return Object.entries(obj).filter(item => item.includes('category'))}).flat(2).filter((v, i, a) => a.indexOf(v) === i).filter(elem => elem !== 'category'),
+        favoriteWords: state.allWords.filter(word => word.favorite),
+        learnedWords: state.allWords.filter(word => word.learned) 
+      }
     default: 
       return state
   }  

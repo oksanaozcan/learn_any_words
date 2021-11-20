@@ -1,16 +1,45 @@
 import React, {useState} from "react";
 import { View, StyleSheet, ScrollView, Image, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { useDispatch } from "react-redux";
 import TitleText from "../components/TitleText";
 import SubText from "../components/SubText";
 import Card from "../components/Card";
 import MyButton from "../components/MyButton";
 import { THEME } from "../theme";
+import { addWord } from "../store/actions/wordAction";
 
-const AddWordScreen = ({}) => {
+const AddWordScreen = ({navigation}) => {
+  const dispatch = useDispatch()
   const [newWord, setNewWord] = useState('')
+  const [newTranslate, setNewTranslate] = useState('')
+  const [synonims, setSynonims] = useState('')
+  const [newCategory, setNewCategory] = useState('')
+  const [newExample, setNewExample] = useState('')
+  const [newTranslateEx, setNewTranslateEx] = useState('')
+
+  let tempImg = 'https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416_960_720.jpg'
 
   const saveWordHandler = () => {
-    console.log("save word handler")
+    const myWord = {
+      word: newWord,
+      img: tempImg,
+      translate: newTranslate,
+      synonims: synonims,
+      category: newCategory,
+      example: newExample,
+      tr_example: newTranslateEx,
+      favorite: false,
+      learned: false,
+      date: new Date().toJSON()
+    }
+    dispatch(addWord(myWord))
+    setNewWord('')
+    setNewTranslate('')
+    setSynonims('')
+    setNewCategory('')
+    setNewExample('')
+    setNewTranslateEx('')
+    navigation.navigate("AllWords")
   }
   return(    
     <SafeAreaView>
@@ -22,29 +51,53 @@ const AddWordScreen = ({}) => {
       </View>
     <View style={styles.wrap}> 
       <View style={styles.imgIconsWrap}>
-        <Image style={styles.img} source={{uri: 'https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416_960_720.jpg'}}/>                
+        <Image style={styles.img} source={{uri: tempImg}}/>                
       </View>              
       <Card>
-        <SubText>word:</SubText>    
+        <SubText>word*:</SubText>    
         <TextInput style={styles.textinput} 
           placeholder="Enter New Word" 
           value={newWord} 
           onChangeText={setNewWord}
         />            
         <SubText >translate:</SubText>    
-        <TextInput style={styles.textinput}/>                 
+        <TextInput style={styles.textinput} 
+          placeholder="Enter translate"
+          value={newTranslate}
+          onChangeText={setNewTranslate}
+          multiline
+        />                 
       </Card>        
       <Card>
         <SubText>synonims:</SubText>          
-        <TextInput style={styles.textinput}/>              
+        <TextInput style={styles.textinput} 
+          placeholder="Enter synonims"
+          value={synonims}
+          onChangeText={setSynonims}
+          multiline
+        />              
         <SubText >category:</SubText>         
-        <TextInput style={styles.textinput}/>               
+        <TextInput style={styles.textinput} 
+          placeholder="Enter category"
+          value={newCategory}
+          onChangeText={setNewCategory}
+        />               
       </Card>      
       <Card>
         <SubText>example:</SubText>          
-        <TextInput style={styles.textinput}/>         
+        <TextInput style={styles.textinput} 
+          placeholder="Enter example"
+          value={newExample}
+          onChangeText={setNewExample} 
+          multiline
+        />         
         <SubText >translate example:</SubText>
-        <TextInput style={styles.textinput}/>                
+        <TextInput style={styles.textinput} 
+          placeholder="Enter translate example"
+          value={newTranslateEx}
+          onChangeText={setNewTranslateEx} 
+          multiline
+        />                
       </Card>        
     </View>
     <View style={styles.btnContainer}>
