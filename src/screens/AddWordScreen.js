@@ -38,6 +38,7 @@ const AddWordScreen = ({navigation}) => {
     }
     dispatch(addWord(myWord))
     setNewWord('')
+    setImg(null)
     setNewTranslate('')
     setSynonims('')
     setNewCategory('')
