@@ -7,22 +7,26 @@ import Card from "../components/Card";
 import MyButton from "../components/MyButton";
 import { THEME } from "../theme";
 import { addWord } from "../store/actions/wordAction";
+import PhotoPicker from "../components/PhotoPikcer";
 
 const AddWordScreen = ({navigation}) => {
   const dispatch = useDispatch()
   const [newWord, setNewWord] = useState('')
+  const [img, setImg] = useState(null)
   const [newTranslate, setNewTranslate] = useState('')
   const [synonims, setSynonims] = useState('')
   const [newCategory, setNewCategory] = useState('')
   const [newExample, setNewExample] = useState('')
   const [newTranslateEx, setNewTranslateEx] = useState('')
 
-  let tempImg = 'https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416_960_720.jpg'
+  const photoPickerHandler = uri => {    
+    setImg(uri)
+  }
 
   const saveWordHandler = () => {
     const myWord = {
       word: newWord,
-      img: tempImg,
+      img: img,
       translate: newTranslate,
       synonims: synonims,
       category: newCategory,
@@ -51,7 +55,7 @@ const AddWordScreen = ({navigation}) => {
       </View>
     <View style={styles.wrap}> 
       <View style={styles.imgIconsWrap}>
-        <Image style={styles.img} source={{uri: tempImg}}/>                
+      <PhotoPicker photoPickerHandler={photoPickerHandler} />                
       </View>              
       <Card>
         <SubText>word*:</SubText>    
