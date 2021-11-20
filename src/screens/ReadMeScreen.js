@@ -22,6 +22,7 @@ const ReadMeScreen = ({navigation}) => {
       <View>
         <TitleText>Problems: </TitleText>
         <CommonText>bug if all words delete last category in the main screen seeing</CommonText>
+        <CommonText> if category === 0 added text to mainscreen: you hav not any owun category yet. If category === ''</CommonText>
         <CommonText>Count: {count}</CommonText>
       </View>
     </View>

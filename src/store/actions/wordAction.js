@@ -1,10 +1,9 @@
 import { LOAD_WORDS, TOGGLE_FAVORITE, TOGGLE_LEARNED, REMOVE_WORD, ADD_WORD } from "../types";
-import {DATA} from '../../data';
 
 export const loadWords = () => {
   return {
     type: LOAD_WORDS,
-    payload: DATA
+    payload: []
   }
 }
 
