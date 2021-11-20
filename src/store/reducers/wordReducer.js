@@ -15,61 +15,84 @@ function createAllCategories(array) {
 }
 
 const wordReducer = (state = initialState, action) => {
-  switch (action.type) {    
+  switch (action.type) {
+
     case LOAD_WORDS: 
-    return {
-      ...state, 
-      categories: action.payload.map(obj => {
-        return Object.entries(obj).filter(item => item.includes('category'))
-      }).flat(2).filter((v, i, a) => a.indexOf(v) === i).filter(elem => elem !== 'category'),
-      allWords: action.payload,      
-      favoriteWords: action.payload.filter(word => word.favorite),
-      learnedWords: action.payload.filter(word => word.learned)      
-    }
-    case TOGGLE_FAVORITE: 
-      const allWords = state.allWords.map(word => {
-        if (word.id === action.payload) {
-          word.favorite = !word.favorite
-        }
-        return word
-      })
       return {
-        ...state, 
-        categories: state.allWords.map(obj => {return Object.entries(obj).filter(item => item.includes('category'))}).flat(2).filter((v, i, a) => a.indexOf(v) === i).filter(elem => elem !== 'category'),
-        allWords, 
-        favoriteWords: state.allWords.filter(word => word.favorite),
-        learnedWords: state.allWords.filter(word => word.learned)
-      }
-      case TOGGLE_LEARNED: 
-      const allWordsLearned = state.allWords.map(word => {
-        if (word.id === action.payload) {
-          word.learned = !word.learned
-        }
-        return word
-      })
-      return {
-        ...state, 
-        categories: state.allWords.map(obj => {return Object.entries(obj).filter(item => item.includes('category'))}).flat(2).filter((v, i, a) => a.indexOf(v) === i).filter(elem => elem !== 'category'),
-        allWordsLearned, 
-        favoriteWords: state.allWords.filter(word => word.favorite),
-        learnedWords: state.allWords.filter(word => word.learned)
-      }
-      case REMOVE_WORD:        
+        ...state,       
+        allWords: action.payload,
+        initCategories: function() {
+          this.categories = createAllCategories(this.allWords);
+          delete this.initCategories;
+          return this
+        },     
+        favoriteWords: action.payload.filter(word => word.favorite),
+        learnedWords: action.payload.filter(word => word.learned)      
+      }.initCategories()
+    
+      case TOGGLE_FAVORITE: 
+        const allWords = state.allWords.map(word => {
+          if (word.id === action.payload) {
+            word.favorite = !word.favorite
+          }
+          return word
+        })
         return {
-          ...state, 
-          categories: state.allWords.map(obj => {return Object.entries(obj).filter(item => item.includes('category'))}).flat(2).filter((v, i, a) => a.indexOf(v) === i).filter(elem => elem !== 'category'),
-          allWords: state.allWords.filter(word => word.id !== action.payload),
+          ...state,         
+          allWords, 
+          initCategories: function() {
+            this.categories = createAllCategories(this.allWords);
+            delete this.initCategories;
+            return this
+          },     
           favoriteWords: state.allWords.filter(word => word.favorite),
           learnedWords: state.allWords.filter(word => word.learned)
-        }
-      case ADD_WORD: 
-      return {
-        ...state,        
-        allWords: [...state.allWords, {...action.payload}],
-        categories: state.allWords.map(obj => {return Object.entries(obj).filter(item => item.includes('category'))}).flat(2).filter((v, i, a) => a.indexOf(v) === i).filter(elem => elem !== 'category'),
-        favoriteWords: state.allWords.filter(word => word.favorite),
-        learnedWords: state.allWords.filter(word => word.learned) 
-      }
+        }.initCategories()
+      
+      case TOGGLE_LEARNED: 
+        const allWordsLearned = state.allWords.map(word => {
+          if (word.id === action.payload) {
+            word.learned = !word.learned
+          }
+          return word
+        })
+        return {
+          ...state,           
+          allWords: allWordsLearned, 
+          initCategories: function() {
+            this.categories = createAllCategories(this.allWords);
+            delete this.initCategories;
+            return this
+          },     
+          favoriteWords: state.allWords.filter(word => word.favorite),
+          learnedWords: state.allWords.filter(word => word.learned)
+        }.initCategories()
+      
+        case REMOVE_WORD:        
+          return {
+            ...state, 
+            allWords: state.allWords.filter(word => word.id !== action.payload),
+            initCategories: function() {
+              this.categories = createAllCategories(this.allWords);
+              delete this.initCategories;
+              return this
+            },     
+            favoriteWords: state.allWords.filter(word => word.favorite),
+            learnedWords: state.allWords.filter(word => word.learned)
+          }.initCategories()
+        
+        case ADD_WORD: 
+          return {
+            ...state,        
+            allWords: [...state.allWords, {...action.payload}],
+            initCategories: function() {
+              this.categories = createAllCategories(this.allWords);
+              delete this.initCategories;
+              return this
+            },     
+            favoriteWords: state.allWords.filter(word => word.favorite),
+            learnedWords: state.allWords.filter(word => word.learned) 
+          }.initCategories()
     default: 
       return state
   }  
