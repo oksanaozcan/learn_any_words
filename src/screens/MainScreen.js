@@ -27,10 +27,8 @@ const MainScreen = ({navigation}) => {
   }, [dispatch, allCategories])
 
   const allCategories = useSelector(state => state.word.categories)
-  const wordsLength = useSelector(state => state.word.allWords).length
-  
-  const categLength = allCategories.length
-  
+  const wordsLength = useSelector(state => state.word.allWords).length  
+  const categLength = allCategories.length  
 
   if(wordsLength == 0) {    
     return (
