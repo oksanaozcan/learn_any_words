@@ -31,8 +31,7 @@ const MainScreen = ({navigation}) => {
 
   console.log(allCategories)
 
-  if(wordsLength == 0) {
-    navigation.navigate("Main")
+  if(wordsLength == 0) {    
     return (
       <View style={styles.nullLength}>
         <TitleText titleStyle={styles.titleStyle}>You dont have words anymore</TitleText>
