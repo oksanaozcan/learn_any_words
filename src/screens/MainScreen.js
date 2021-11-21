@@ -53,7 +53,7 @@ const MainScreen = ({navigation}) => {
         <MyButton title="Learned" onPress={() => navigation.navigate('Learned')} color={THEME.GREY_COLOR}/>
       </View>      
       <TitleText titleStyle={styles.titleStyle}>Your Categories: <Text style={{ color: THEME.GREY_COLOR }}>[{categLength}]</Text></TitleText>
-      <FlatList data={allCategories} renderItem={renderItem}/>          
+      <FlatList data={allCategories} renderItem={renderItem} keyExtractor={item => item}/>          
     </View>
     </SafeAreaView>
   )
