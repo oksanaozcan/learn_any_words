@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, StyleSheet, ScrollView, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { View, StyleSheet, ScrollView, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 import { useDispatch } from "react-redux";
 import TitleText from "../components/TitleText";
 import SubText from "../components/SubText";
@@ -28,6 +28,17 @@ const AddWordScreen = ({navigation}) => {
       favorite: false,
       learned: false,
       date: new Date().toJSON()
+    }
+    if (myWord.word.trim() === '') {      
+      return(
+        Alert.alert(
+          "Fields word necessarily",
+          "this field cannot be equal to an empty string. Enter value please.",
+          [
+            { text: "OK", onPress: () => setNewWord('') }
+          ]
+        )
+      )
     }
     dispatch(addWord(myWord))
     setNewWord('')    
