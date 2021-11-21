@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, FlatList, StyleSheet, StatusBar } from 'react-native';
+import { SafeAreaView, FlatList, StyleSheet } from 'react-native';
 import { useSelector } from "react-redux";
 import WordItem from "../components/WordItem";
 
@@ -22,17 +22,15 @@ const AllWordsScreen = ({navigation}) => {
       <FlatList
         data={allWords}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id} 
+        inverted
       />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  }  
+  
 });
 
 export default AllWordsScreen;

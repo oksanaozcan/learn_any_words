@@ -10,7 +10,7 @@ import MyButton from "../components/MyButton";
 import Card from "../components/Card";
 
 const MainScreen = ({navigation}) => { 
-  const renderItem = ({item}) => {    
+  const renderItem = ({item}) => {
     return(
       <CategoryItem item={item} 
       openCategory={() => navigation.navigate('Category', 
@@ -28,8 +28,9 @@ const MainScreen = ({navigation}) => {
 
   const allCategories = useSelector(state => state.word.categories)
   const wordsLength = useSelector(state => state.word.allWords).length
-
-  console.log(allCategories)
+  
+  const categLength = allCategories.length
+  
 
   if(wordsLength == 0) {    
     return (
@@ -51,7 +52,7 @@ const MainScreen = ({navigation}) => {
         <MyButton title="Favorite" onPress={() => navigation.navigate('Favorite')} color={THEME.PINK_COLOR}/>
         <MyButton title="Learned" onPress={() => navigation.navigate('Learned')} color={THEME.GREY_COLOR}/>
       </View>      
-      <TitleText titleStyle={styles.titleStyle}>Your Categories: </TitleText>
+      <TitleText titleStyle={styles.titleStyle}>Your Categories: <Text style={{ color: THEME.GREY_COLOR }}>[{categLength}]</Text></TitleText>
       <FlatList data={allCategories} renderItem={renderItem}/>          
     </View>
     </SafeAreaView>
