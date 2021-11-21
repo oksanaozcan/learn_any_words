@@ -17,6 +17,15 @@ const AddWordScreen = ({navigation}) => {
   const [newExample, setNewExample] = useState('')
   const [newTranslateEx, setNewTranslateEx] = useState('')
 
+  const clearAddWordForm = () => {
+    setNewWord('')    
+    setNewTranslate('')
+    setSynonims('')
+    setNewCategory('')
+    setNewExample('')
+    setNewTranslateEx('')
+  }
+
   const saveWordHandler = () => {
     const myWord = {
       word: newWord,      
@@ -106,7 +115,7 @@ const AddWordScreen = ({navigation}) => {
       </Card>        
     </View>
     <View style={styles.btnContainer}>
-      <MyButton title="cansel" onPress={() => {}} color={THEME.GREY_COLOR}/>
+      <MyButton title="clear" onPress={clearAddWordForm} color={THEME.GREY_COLOR}/>
       <MyButton title="add word" onPress={saveWordHandler} color={THEME.GREEN_COLOR}/>
     </View>    
     </View>
