@@ -80,6 +80,19 @@ class DB {
       })
     })    
   }
+
+  static editWord({id, word, translate, synonims, category, example, tr_example, favorite, learned, date}) {
+    return new Promise((resolve, reject) => {
+      db.transaction(tx => {
+        tx.executeSql(
+          `UPDATE words SET word = ?, translate = ?, synonims = ?, category = ?, example = ?, tr_example = ?, favorite = ?, learned = ?, date =? WHERE id = ${id}`,
+          [word, translate, synonims, category, example, tr_example, favorite, learned, date],
+          resolve,
+          (_, error) => reject(error)
+        )
+      })
+    })    
+  }
 }
 
 export default DB;

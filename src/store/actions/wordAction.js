@@ -1,5 +1,5 @@
 import DB from "../../db";
-import { LOAD_WORDS, TOGGLE_FAVORITE, TOGGLE_LEARNED, REMOVE_WORD, ADD_WORD } from "../types";
+import { LOAD_WORDS, TOGGLE_FAVORITE, TOGGLE_LEARNED, REMOVE_WORD, ADD_WORD, EDIT_WORD } from "../types";
 
 export const loadWords = () => { 
   return async dispatch => {
@@ -44,5 +44,13 @@ export const addWord = newWord => async dispatch => {
   dispatch({
     type: ADD_WORD,
     payload
+  })
+}
+
+export const editWord = editedWord => async dispatch => {
+  await DB.editWord(editedWord)  
+  dispatch({
+    type: EDIT_WORD,
+    payload: editedWord
   })
 }

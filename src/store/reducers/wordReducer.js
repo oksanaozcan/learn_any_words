@@ -1,8 +1,8 @@
-import { LOAD_WORDS, TOGGLE_FAVORITE, TOGGLE_LEARNED, REMOVE_WORD, ADD_WORD } from "../types";
+import { LOAD_WORDS, TOGGLE_FAVORITE, TOGGLE_LEARNED, REMOVE_WORD, ADD_WORD, EDIT_WORD } from "../types";
 
-const initialState = {
-  categories: [],
+const initialState = {  
   allWords: [],  
+  categories: [],
   favoriteWords: [],
   learnedWords: []  
 }
@@ -85,6 +85,26 @@ const wordReducer = (state = initialState, action) => {
           return {
             ...state,        
             allWords: [...state.allWords, {...action.payload}],
+            initCategories: function() {
+              this.categories = createAllCategories(this.allWords);
+              delete this.initCategories;
+              return this
+            },     
+            favoriteWords: state.allWords.filter(word => word.favorite),
+            learnedWords: state.allWords.filter(word => word.learned) 
+          }.initCategories()
+
+          case EDIT_WORD:       
+          const editedAllWords = state.allWords.map(obj => {
+            if (obj.id.toString() === action.payload.id.toString()) {
+              return {...obj, ...action.payload}
+            } else {
+              return obj
+            }
+          })
+          return {
+            ...state,        
+            allWords: editedAllWords, 
             initCategories: function() {
               this.categories = createAllCategories(this.allWords);
               delete this.initCategories;

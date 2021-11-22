@@ -59,7 +59,7 @@ const WordScreen = ({route, navigation}) => {
       navigation.setOptions({
         headerRight: () => (
           <View style={styles.headericonContainer}>
-            <Ionicons name="pencil-outline" size={25} color={THEME.GREEN_COLOR} onPress={() => navigation.navigate('Edit')}/>
+            <Ionicons name="pencil-outline" size={25} color={THEME.GREEN_COLOR} onPress={() => navigation.navigate('Edit', {myWord: myWord})}/>
             <Ionicons name="trash-outline" size={25} color={THEME.PINK_COLOR} onPress={removeWordHandler}
             />
           </View>            
