@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { StyleSheet, SafeAreaView, FlatList } from "react-native";
 import WordItem from "../components/WordItem";
 import TitleText from "../components/TitleText";
+import SubText from "../components/SubText";
 
 const CategoryScreen = ({route, navigation}) => {
   const {openCategory} = route.params;
@@ -26,7 +27,7 @@ const CategoryScreen = ({route, navigation}) => {
 
   return(
     <SafeAreaView style={styles.container}>
-      <TitleText>title {lengthCategory}</TitleText>
+      <TitleText titleStyle={styles.titleStyle}>Category {openCategory} <SubText> [{lengthCategory}]</SubText></TitleText>
       <FlatList
         data={myCategory}
         renderItem={renderItem}
@@ -37,7 +38,9 @@ const CategoryScreen = ({route, navigation}) => {
 }
 
 const styles = StyleSheet.create({
-  
+  titleStyle: {
+    textAlign: 'center'
+  },  
 })
 
 export default CategoryScreen;

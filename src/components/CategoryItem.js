@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   itemLearned: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(216,27,96,0.4)',
+    backgroundColor: 'rgba(120,144,156,0.4)',
     paddingVertical: 10,
     paddingHorizontal: 30,
     marginVertical: 5,
