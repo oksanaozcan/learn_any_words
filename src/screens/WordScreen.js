@@ -103,11 +103,7 @@ const styles = StyleSheet.create({
   wrap: {
     padding: 20,
     alignItems: 'center'    
-  },
-  img: {
-    width: '50%',
-    height: 90
-  },  
+  }, 
   titleStyle: {
     paddingLeft: 30
   },

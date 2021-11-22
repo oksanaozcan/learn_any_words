@@ -4,7 +4,7 @@ import { THEME } from "../theme";
 
 const Card =(props) => {
   return (
-    <View style={styles.card}>{props.children}</View>
+    <View style={{...styles.card, ...props.thiscard}}>{props.children}</View>
   )
 }
 
