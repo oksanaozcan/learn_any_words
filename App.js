@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import { Ionicons } from '@expo/vector-icons';
 import MainStackScreen from './src/navigation/MainStack';
-import LearnWordsScreen from './src/screens/LearnWordsScreen';
+import LearnStackScreen from './src/navigation/LearnStack';
 import AddWordScreen from './src/screens/AddWordScreen';
 import {THEME} from './src/theme';
 import store from './src/store';
@@ -32,11 +32,11 @@ export default function App() {
           headerTintColor: THEME.MAIN_COLOR,          
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-            if (route.name === 'Main') {
+            if (route.name === 'MainStack') {
               iconName = focused
                 ? 'albums'
                 : 'albums-outline';
-            } else if (route.name === 'Learn') {
+            } else if (route.name === 'LearnStack') {
               iconName = focused ? 'rocket' : 'rocket-outline';
             }  else if (route.name === 'AddWord') {
               iconName = focused ? 'add-circle' : 'add-circle-outline';
@@ -47,8 +47,8 @@ export default function App() {
           tabBarInactiveTintColor: THEME.GREY_COLOR,
         })}
       >
-        <Tab.Screen name="Main" component={MainStackScreen} options={{title: "Categories", headerShown: false}}/>
-        <Tab.Screen name="Learn" component={LearnWordsScreen} />
+        <Tab.Screen name="MainStack" component={MainStackScreen} options={{title: "Categories", headerShown: false}}/>
+        <Tab.Screen name="LearnStack" component={LearnStackScreen} options={{headerShown: false}}/>
         <Tab.Screen name="AddWord" component={AddWordScreen} 
           options={{
             headerTitle: "Add New Word",
