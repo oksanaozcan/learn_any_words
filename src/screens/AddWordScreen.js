@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { View, StyleSheet, ScrollView, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 import { useDispatch } from "react-redux";
-import TitleText from "../components/TitleText";
 import SubText from "../components/SubText";
 import Card from "../components/Card";
 import MyButton from "../components/MyButton";
@@ -42,7 +41,7 @@ const AddWordScreen = ({navigation}) => {
       return(
         Alert.alert(
           "Fields word necessarily",
-          "this field cannot be equal to an empty string. Enter value please.",
+          "This field cannot be equal to an empty string. Enter value please.",
           [
             { text: "OK", onPress: () => setNewWord('') }
           ]
@@ -61,11 +60,8 @@ const AddWordScreen = ({navigation}) => {
   return(    
     <SafeAreaView>
     <ScrollView>
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>   
-      <View>    
-      <View style={styles.container}>
-      <TitleText titleStyle={styles.titleStyle}>Add New Word for learning</TitleText>
-      </View>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>      
+    <View>      
     <View style={styles.wrap}>                   
       <Card>
         <SubText>word*:</SubText>    
@@ -125,48 +121,20 @@ const AddWordScreen = ({navigation}) => {
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    alignItems: 'center'
-  },
+const styles = StyleSheet.create({  
   wrap: {
     padding: 20,
     alignItems: 'center'    
-  },
-  titleStyle: {
-    textAlign: 'center'
-  },
-  img: {
-    width: '50%',
-    height: 90
-  },   
-  imgIconsWrap: {
-    width: '90%',
-    flexDirection: 'row',
-    alignItems: 'flex-end',    
-    justifyContent: 'space-between'
-  },
-  iconsContainer: {
-    flexDirection: 'row',
-    width: '20%',
-    justifyContent: 'space-between'
   },  
   btnContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 15
-  },
-  headericonContainer: {
-    flexDirection: 'row',
-    width: 65,
-    justifyContent: 'space-between'
-  },
+  }, 
   textinput: {
     padding: 10,
     paddingLeft: 30,   
-  }
- 
+  } 
 })
 
 export default AddWordScreen;

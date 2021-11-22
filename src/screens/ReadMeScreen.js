@@ -22,6 +22,7 @@ const ReadMeScreen = ({navigation}) => {
       <View>
         <TitleText>Problems: </TitleText>        
         <CommonText> 1 может добавить фильтры посмотрим</CommonText>
+        <CommonText> возможность делать бэкап своей базы для пользователя</CommonText>
         <CommonText> 2 изменить этот скрин </CommonText>
         <CommonText>Count: {count}</CommonText>
       </View>
