@@ -7,7 +7,6 @@ import CommonText from "../components/CommonText";
 import Card from "../components/Card";
 import { Ionicons } from '@expo/vector-icons';
 import { THEME } from "../theme";
-import MyButton from "../components/MyButton";
 import { toggleFavorite, toggleLearned, removeWord } from "../store/actions/wordAction";
 
 const WordScreen = ({route, navigation}) => {
@@ -94,11 +93,7 @@ const WordScreen = ({route, navigation}) => {
         <SubText >translate example:</SubText>          
         <CommonText>{myWord.tr_example}</CommonText>             
       </Card>        
-    </View>
-    <View style={styles.btnContainer}>
-      <MyButton title="edit" onPress={() => navigation.navigate('Edit')} color={THEME.GREEN_COLOR}/>
-      <MyButton title="delete" onPress={removeWordHandler} color={THEME.PINK_COLOR}/>
-    </View>
+    </View>    
     </ScrollView>    
   )
 }
@@ -126,12 +121,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '20%',
     justifyContent: 'space-between'
-  },  
-  btnContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 15
-  },
+  },   
   headericonContainer: {
     flexDirection: 'row',
     width: 65,
