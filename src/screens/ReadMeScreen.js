@@ -21,6 +21,7 @@ const ReadMeScreen = ({navigation}) => {
       <CommonText>Здесь в будузем будет небольшая инфа и приложении и инструкция к нему. А сейчас буду сюда вписывать задачи и проблемы которые нужно будет не забыть решить</CommonText>
       <View>
         <TitleText>Problems: </TitleText>        
+        <CommonText> AllWordsScreen change learned from WordScreen текст пропадает</CommonText>
         <CommonText> 1 может добавить фильтры посмотрим</CommonText>
         <CommonText> возможность делать бэкап своей базы для пользователя желательно в табличке exel или может что то типа google doc (узнать про эту фигню) </CommonText>
         <CommonText> 2 изменить этот скрин </CommonText>

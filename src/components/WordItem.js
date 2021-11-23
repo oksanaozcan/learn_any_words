@@ -2,14 +2,17 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { THEME } from "../theme";
 
-const WordItem = ({ item, openWord }) => (
-  <TouchableOpacity activeOpacity={0.7} onPress={openWord}>
-    <View style={item.favorite ? styles.favoriteItem : styles.item}>    
-      <Text style={item.learned ? styles.learnedTitle : styles.title}>{item.word}</Text>
-      <Text style={styles.cat}>[{item.category}]</Text>
-    </View>
-  </TouchableOpacity>
-);
+const WordItem = ({ item, openWord}) => {
+  
+  return (
+    <TouchableOpacity activeOpacity={0.7} onPress={openWord}>
+      <View style={item.favorite ? styles.favoriteItem : styles.item}>    
+        <Text style={styles.title}>{item.word}</Text>
+        <Text style={styles.cat}>[{item.category}]</Text>
+      </View>
+    </TouchableOpacity>
+  );
+} 
 
 const styles = StyleSheet.create({  
   item: {
@@ -34,15 +37,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     textTransform: 'uppercase',
     paddingEnd: 15
-  },
-  learnedTitle: {
-    fontSize: 12,
-    fontFamily: 'OpenBold',
-    color: THEME.GREY_COLOR,
-    letterSpacing: 1,
-    textTransform: 'uppercase',
-    paddingEnd: 15
-  },
+  },  
   cat: {
     fontSize: 12,
     fontFamily: 'OpenReg',
