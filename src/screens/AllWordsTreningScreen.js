@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { THEME } from "../theme";
 import Card from "../components/Card";
@@ -8,27 +8,45 @@ import CommonText from "../components/CommonText";
 import SubText from "../components/SubText";
 import { Ionicons } from '@expo/vector-icons';
 import FooterBtnGroup from "../components/FooterBtnGroup";
+import { toggleLearned } from "../store/actions/wordAction";
 
-const AllWordsTreningScreen = ({}) => {
-  const allWords = useSelector(state => state.word.allWords)
-  const randomIndx = Math.floor(Math.random() * allWords.length)  
+const AllWordsTreningScreen = ({route}) => {
+  const {data} = route.params
+  let dataArray;
   
-  const [word, setWord] = useState(allWords[randomIndx])
+  if (data === 'allWords') {
+    dataArray = useSelector(state => state.word.allWords)
+  } else if (data === 'favoriteWords') {
+    dataArray = useSelector(state => state.word.favoriteWords)
+  }
+  
+  const randomIndx = Math.floor(Math.random() * dataArray.length)   
+  const dispatch = useDispatch()  
+  
+  const [word, setWord] = useState(dataArray[randomIndx])
   const [showWord, setShowWord] = useState(false)
 
   const addToLearnedHandler = () => {
-    console.log('toggle learned reducer')
+    if (word.learned){
+      let indx = Math.floor(Math.random() * dataArray.length)  
+      setWord(dataArray[indx])      
+    } else {
+      dispatch(toggleLearned(word))
+      let indx = Math.floor(Math.random() * dataArray.length)  
+      setWord(dataArray[indx]) 
+    }         
   }
 
   const learnWordHandler = () => {
-    let indx = Math.floor(Math.random() * allWords.length)  
-    setWord(allWords[indx]);
+    let indx = Math.floor(Math.random() * dataArray.length)  
+    setWord(dataArray[indx]);
   }
 
   if (!showWord) {
     return (
-    <View style={styles.main}>
+    <View style={styles.main}>      
       <View style={styles.container}>
+        <SubText>{word.learned ? 'remembe word' : 'new word'}</SubText>
         <Card>
           <TitleText titleStyle={styles.titleStyle}>{word.word}</TitleText>
         </Card>
@@ -41,9 +59,10 @@ const AllWordsTreningScreen = ({}) => {
     )
   } else {
     return (
-      <View style={styles.main}>     
+      <View style={styles.main}>  
         <ScrollView style={styles.cardWrap}>
-          <View style={styles.container}>            
+          <View style={styles.container}>    
+          <SubText>{word.learned ? 'remembe word' : 'new word'}</SubText>        
             <Card>
               <TitleText titleStyle={styles.titleStyle}>{word.word}</TitleText>
             </Card>         
@@ -72,7 +91,6 @@ const AllWordsTreningScreen = ({}) => {
     )
   }
 }
-
 
 const styles = StyleSheet.create({
   main: {
