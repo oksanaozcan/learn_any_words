@@ -27,7 +27,9 @@ const styles = StyleSheet.create({
   wrap: {    
     width: '100%',    
     position: 'relative',
-    alignItems: 'center'    
+    alignItems: 'center',
+    marginHorizontal: 5,
+    marginVertical: 1
   }, 
   dividerContainer: {   
     position: 'absolute',
