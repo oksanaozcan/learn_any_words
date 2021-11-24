@@ -10,6 +10,7 @@ import LearnStackScreen from './src/navigation/LearnStack';
 import AddWordScreen from './src/screens/AddWordScreen';
 import {THEME} from './src/theme';
 import store from './src/store';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,6 +26,7 @@ export default function App() {
     )
   }
   return (
+    // <SafeAreaProvider>
     <Provider store={store} >
     <NavigationContainer>      
       <Tab.Navigator 
@@ -58,5 +60,6 @@ export default function App() {
       </Tab.Navigator>   
     </NavigationContainer>
     </Provider>
+    // </SafeAreaProvider>
   );
 }

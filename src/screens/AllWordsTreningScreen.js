@@ -31,17 +31,19 @@ const AllWordsTreningScreen = ({route}) => {
   const addToLearnedHandler = () => {
     if (word.learned){
       let indx = Math.floor(Math.random() * dataArray.length)  
-      setWord(dataArray[indx])      
+      setWord(dataArray[indx])           
     } else {
       dispatch(toggleLearned(word))
       let indx = Math.floor(Math.random() * dataArray.length)  
-      setWord(dataArray[indx]) 
+      setWord(dataArray[indx])       
     }         
+    setShowWord(false)
   }
 
   const learnWordHandler = () => {
     let indx = Math.floor(Math.random() * dataArray.length)  
     setWord(dataArray[indx]);
+    setShowWord(false)
   }
 
   if (!showWord) {

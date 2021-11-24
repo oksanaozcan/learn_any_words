@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import { SafeAreaView, FlatList, StyleSheet } from 'react-native';
 import { useSelector } from "react-redux";
 import WordItem from "../components/WordItem";
+import { SearchBar } from 'react-native-elements';
+import { THEME } from "../theme";
 
 const AllWordsScreen = ({navigation}) => {
-  
+  const allWords = useSelector(state => state.word.allWords)
+  const [search, setSearch] = useState ('')
+
   const renderItem = ({ item }) => (
     <WordItem item={item} 
       openWord={() => navigation.navigate('Word', 
@@ -13,14 +17,23 @@ const AllWordsScreen = ({navigation}) => {
         word: item.word       
       })}
     />
-  );
+  ); 
 
-  const allWords = useSelector(state => state.word.allWords)
+  const updateSearch = str => {
+    setSearch(str)
+  }
 
   return (
     <SafeAreaView style={styles.container}>
+      <SearchBar
+      placeholder="Type Here..."
+      onChangeText={updateSearch}
+      value={search}
+      containerStyle={styles.containerStyle} 
+      inputContainerStyle={styles.inputContainerStyle}
+    />
       <FlatList
-        data={allWords}
+        data={search ? allWords.filter(item => item.word.toLowerCase().includes(search.toLowerCase())) : allWords}
         renderItem={renderItem}
         keyExtractor={item => item.id} 
         inverted
@@ -30,7 +43,13 @@ const AllWordsScreen = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
-  
+  containerStyle: {
+    backgroundColor: THEME.GREY_COLOR,
+    
+  },
+  inputContainerStyle: {
+    backgroundColor: '#eceff1'
+  }
 });
 
 export default AllWordsScreen;
