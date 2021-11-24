@@ -89,9 +89,7 @@ const AllWordsTreningScreen = ({route}) => {
           </View>         
         </ScrollView>
         <FooterBtnGroup learnWordHandler={learnWordHandler} addToLearnedHandler={addToLearnedHandler}/>
-      </View>
-      
-      
+      </View>  
     )
   }
 }

@@ -26,7 +26,7 @@ const AllWordsScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <SearchBar
-      placeholder="Type Here..."
+      placeholder="Search Words..."
       onChangeText={updateSearch}
       value={search}
       containerStyle={styles.containerStyle} 
@@ -44,11 +44,12 @@ const AllWordsScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   containerStyle: {
-    backgroundColor: THEME.GREY_COLOR,
-    
+    backgroundColor: '#eceff1',
+    borderBottomColor: '#fff',
+    borderTopColor: '#fff'    
   },
   inputContainerStyle: {
-    backgroundColor: '#eceff1'
+    backgroundColor: '#fff'
   }
 });
 
