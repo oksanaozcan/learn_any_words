@@ -1,36 +1,43 @@
-import React, {useState, useLayoutEffect} from "react";
-import { SafeAreaView, ScrollView, View, Button} from "react-native";
+import React from "react";
+import { SafeAreaView, ScrollView, View, StyleSheet} from "react-native";
+import Card from "../components/Card";
 import CommonText from "../components/CommonText";
-import TitleText from "../components/TitleText";
+import { Divider } from 'react-native-elements';
 
 const ReadMeScreen = ({navigation}) => {
-  const [count, setCount] = useState(0);
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <Button onPress={() => setCount(c => c + 1)} title="Update count" />
-      ),
-    });
-  }, [navigation]);
-
+  
   return(
     <SafeAreaView>
     <ScrollView>
-    <View>
-      <CommonText>Здесь в будузем будет небольшая инфа и приложении и инструкция к нему. А сейчас буду сюда вписывать задачи и проблемы которые нужно будет не забыть решить</CommonText>
-      <View>
-        <TitleText>Problems: </TitleText>        
-        <CommonText> AllWordsScreen change learned from WordScreen текст пропадает</CommonText>
-        <CommonText> 1 может добавить фильтры посмотрим</CommonText>
-        <CommonText> возможность делать бэкап своей базы для пользователя желательно в табличке exel или может что то типа google doc (узнать про эту фигню) </CommonText>
-        <CommonText> 2 изменить этот скрин </CommonText>
-        <CommonText>Count: {count}</CommonText>
-      </View>
+    <View style={styles.center}>
+      <Card>
+        <CommonText commonStyle={styles.commonStyle}>This application works in offline mode, uses device memory for data storage.</CommonText>
+        <Divider orientation="horizontal" />
+        <CommonText commonStyle={styles.commonStyle}>You yourself fill in your database, enter only the data that is necessary.</CommonText>
+        <Divider orientation="horizontal" />
+        <CommonText commonStyle={styles.commonStyle}>You can edit, delete data partially or completely, control the vocabulary replenishment process, dividing your data into categories.</CommonText>
+        <Divider orientation="horizontal" />
+        <CommonText commonStyle={styles.commonStyle}>You have the necessary capabilities to view statistics and infographics of your progress.</CommonText>
+      </Card>      
     </View>
     </ScrollView>
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '95%',
+    marginHorizontal: 10,
+    marginVertical: 20
+  }, 
+  commonStyle: {
+    paddingBottom: 10
+  }
+})
+
 
 export default ReadMeScreen;
