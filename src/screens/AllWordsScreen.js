@@ -1,12 +1,49 @@
-import React, {useState} from "react";
-import { SafeAreaView, FlatList, StyleSheet, TouchableWithoutFeedback, Keyboard, View } from 'react-native';
-import { useSelector } from "react-redux";
+import React, {useState, useEffect, useLayoutEffect} from "react";
+import { SafeAreaView, FlatList, StyleSheet, TouchableWithoutFeedback, Keyboard, View, Alert } from 'react-native';
+import { useSelector, useDispatch } from "react-redux";
 import WordItem from "../components/WordItem";
 import { SearchBar } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
+import { THEME } from "../theme";
+import { removeWord, loadWords } from "../store/actions/wordAction";
 
 const AllWordsScreen = ({navigation}) => {
+  const dispatch = useDispatch()
   const allWords = useSelector(state => state.word.allWords)
   const [search, setSearch] = useState ('')
+
+  useEffect(() => {
+    dispatch(loadWords())
+  }, [allWords, dispatch])  
+
+  const removeAllWords = () => 
+  Alert.alert(
+    `Remove All Words`,
+    "Do you really want to remove all words? This action cannot be undone!",
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "Delete", onPress: () => {
+        allWords.map(obj => {
+          dispatch(removeWord(obj.id))
+        })        
+        navigation.navigate("Main")              
+      }}          
+    ]
+  );
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <View style={styles.headericonContainer}>                    
+          <Ionicons name="trash-outline" size={25} color={THEME.PINK_COLOR} onPress={removeAllWords}/>
+        </View>            
+      ),   
+    });
+  }, [navigation]);
 
   const renderItem = ({ item }) => (
     <WordItem item={item} 
@@ -53,7 +90,12 @@ const styles = StyleSheet.create({
   },
   inputContainerStyle: {
     backgroundColor: '#fff'
-  }
+  },
+  headericonContainer: {
+    flexDirection: 'row',
+    width: 65,
+    justifyContent: 'space-between'
+  }  
 });
 
 export default AllWordsScreen;
