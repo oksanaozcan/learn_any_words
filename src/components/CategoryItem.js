@@ -13,7 +13,7 @@ const CategoryItem = ({ item, openCategory }) => {
     <Divider orientation="horizontal"/>
     <View style={styles.wrap}>
       <View style={(catWords.length === learnedWords) ? styles.itemLearned : styles.itemLearning}>    
-        <Text style={styles.title}>{item}</Text>
+        <Text style={styles.title}>{item ? item : 'not name'}</Text>
         <Text style={styles.cat}>[{learnedWords ? learnedWords : 'no learned'} / {catWords.length}]</Text>     
       </View>
       <View style={{...styles.dividerContainer, ...{width: `${Math.floor((100 / catWords.length) * learnedWords)}%`}}}><Divider width={5} orientation="horizontal" color={(catWords.length === learnedWords) ? THEME.GREY_COLOR : THEME.GREEN_COLOR}/></View>

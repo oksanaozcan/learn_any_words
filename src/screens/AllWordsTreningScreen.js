@@ -11,6 +11,7 @@ import FooterBtnGroup from "../components/FooterBtnGroup";
 import { toggleLearned } from "../store/actions/wordAction";
 
 const AllWordsTreningScreen = ({route}) => {
+  const allCategories = useSelector(state => state.word.categories)
   const {data} = route.params
   let dataArray;
   
@@ -20,7 +21,9 @@ const AllWordsTreningScreen = ({route}) => {
     dataArray = useSelector(state => state.word.favoriteWords)
   } else if (data === 'learnedWords') {
     dataArray = useSelector(state => state.word.learnedWords)
-  }  
+  } else if (allCategories.includes(data)) {
+    dataArray = useSelector(state => state.word.allWords.filter(item => item.category === data))
+  }
   
   const randomIndx = Math.floor(Math.random() * dataArray.length)   
   const dispatch = useDispatch()  
