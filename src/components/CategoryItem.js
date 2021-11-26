@@ -1,67 +1,33 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { THEME } from "../theme";
-import { Divider } from 'react-native-elements';
+import { StyleSheet, View } from 'react-native';
+import { ListItem } from 'react-native-elements'
 
 const CategoryItem = ({ item, openCategory }) => {
   const catWords = useSelector(state => state.word.allWords.filter(w => w.category === item))
   const learnedWords = catWords.filter(w => w.learned).length
-
-  return(
-  <TouchableOpacity activeOpacity={0.7} onPress={openCategory}>
-    <Divider orientation="horizontal"/>
-    <View style={styles.wrap}>
-      <View style={(catWords.length === learnedWords) ? styles.itemLearned : styles.itemLearning}>    
-        <Text style={styles.title}>{item ? item : 'not name'}</Text>
-        <Text style={styles.cat}>[{learnedWords ? learnedWords : 'no learned'} / {catWords.length}]</Text>     
-      </View>
-      <View style={{...styles.dividerContainer, ...{width: `${Math.floor((100 / catWords.length) * learnedWords)}%`}}}><Divider width={5} orientation="horizontal" color={(catWords.length === learnedWords) ? THEME.GREY_COLOR : THEME.GREEN_COLOR}/></View>
-    </View> 
-    <Divider orientation="horizontal"/>    
-  </TouchableOpacity>
+  return (   
+    <View>
+    <ListItem style={styles.container} bottomDivider onPress={openCategory}>   
+      <ListItem.Title>{item ? item : 'not name'}</ListItem.Title>  
+      <ListItem.Content>        
+        <ListItem.Subtitle>[{learnedWords ? learnedWords : 'no learned'} / {catWords.length}]</ListItem.Subtitle>
+      </ListItem.Content>
+      <ListItem.Chevron />
+    </ListItem>
+    <View style={{...styles.progressLine, ...{width: `${Math.floor((100 / catWords.length) * learnedWords)}%`}}}></View>
+    </View>
   )
 }
 
-const styles = StyleSheet.create({  
-  wrap: {    
-    width: '100%',    
-    position: 'relative',
-    alignItems: 'center',
-    marginHorizontal: 5,
-    marginVertical: 1
-  }, 
-  dividerContainer: {   
-    position: 'absolute',
-    bottom: 0,
-    left: 0
+const styles = StyleSheet.create({ 
+  container: {
+    position: 'relative'
   },
-  itemLearning: {
-    flexDirection: 'row',
-    backgroundColor: 'rgba(77,182,172,0.4)',
-    paddingVertical: 15,
-    paddingHorizontal: 30,    
-    width: '100%'
-  },
-  itemLearned: {
-    flexDirection: 'row',
-    backgroundColor: 'rgba(120,144,156,0.4)',
-    paddingVertical: 15,
-    paddingHorizontal: 30,    
-    width: '100%',    
-  },
-  title: {
-    fontSize: 14,
-    fontFamily: 'OpenBold',
-    letterSpacing: 2,
-    textTransform: 'uppercase',
-    paddingEnd: 15
-  },
-  cat: {
-    fontSize: 14,
-    fontFamily: 'OpenReg',
-    textAlignVertical: 'bottom',
-    color: THEME.GREY_COLOR
+  progressLine: {
+    position: 'absolute',    
+    height: '100%',
+    backgroundColor: 'rgba(77,182,172,0.28)'
   }
 });
 

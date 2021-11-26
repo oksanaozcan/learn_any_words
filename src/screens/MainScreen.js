@@ -6,9 +6,8 @@ import TitleText from "../components/TitleText";
 import { THEME } from "../theme";
 import MyButton from "../components/MyButton";
 import { Ionicons } from '@expo/vector-icons';
-// import Card from "../components/Card";
-import { ListItem, Text, Card } from 'react-native-elements'
-import { Divider } from "react-native-elements/dist/Divider";
+import { Text, Card } from 'react-native-elements'
+import CategoryItem from "../components/CategoryItem";
 
 const MainScreen = ({navigation}) => { 
   const dispatch = useDispatch()
@@ -34,15 +33,10 @@ const MainScreen = ({navigation}) => {
     });
   }, [navigation]);
 
-  const renderItem = ({ item }) => (
-    <ListItem bottomDivider onPress={() => navigation.navigate('Category', {openCategory: item})}>   
-      <ListItem.Title>{item}</ListItem.Title>  
-      <ListItem.Content>        
-        <ListItem.Subtitle>{item}</ListItem.Subtitle>
-      </ListItem.Content>
-      <ListItem.Chevron />
-    </ListItem>
-  )
+  const renderItem = ({ item }) => {   
+    return(
+    <CategoryItem item={item} openCategory={() => navigation.navigate('Category', {openCategory: item})}/>
+  )}
   
   if(wordsLength == 0) {    
     return (
@@ -58,8 +52,7 @@ const MainScreen = ({navigation}) => {
       <Card containerStyle={{ marginBottom: 10 }}>
         <Card.Title style={{ color: THEME.PINK_COLOR }}>{wordsLength} <Text>words in your dictionary</Text></Card.Title>        
         <Card.Divider/> 
-        <Card.Title>Your Categories: <Text>[{categLength}]</Text></Card.Title> 
-        
+        <Card.Title>Your Categories: <Text>[{categLength}]</Text></Card.Title>        
       </Card>            
       <FlatList contentContainerStyle={{ paddingBottom: 145 }} data={allCategories} renderItem={renderItem} keyExtractor={(item, index) => index.toString()}/>                 
     </View>    
