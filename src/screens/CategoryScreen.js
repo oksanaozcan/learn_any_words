@@ -1,6 +1,6 @@
 import React, {useEffect, useLayoutEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { StyleSheet, SafeAreaView, FlatList, Alert, View } from "react-native";
+import { StyleSheet, FlatList, Alert, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { THEME } from "../theme";
 import WordItem from "../components/WordItem";
@@ -62,14 +62,14 @@ const CategoryScreen = ({route, navigation}) => {
   );
 
   return(
-    <SafeAreaView style={styles.container}>
+    <View>
       <TitleText titleStyle={styles.titleStyle}>Category {openCategory} <SubText> [{lengthCategory}]</SubText></TitleText>
       <FlatList
         data={myCategory}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
-    </SafeAreaView>
+    </View>      
   )
 }
 

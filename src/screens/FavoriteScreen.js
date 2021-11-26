@@ -1,5 +1,5 @@
 import React, {useLayoutEffect, useEffect} from "react";
-import { StyleSheet, SafeAreaView, FlatList, View, Alert } from "react-native";
+import { StyleSheet, FlatList, View, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import WordItem from "../components/WordItem";
 import { Ionicons } from '@expo/vector-icons';
@@ -70,14 +70,12 @@ const FavoriteScreen = ({navigation}) => {
     });
   }, [navigation]);
 
-  return(
-    <SafeAreaView>
+  return(    
       <FlatList
         data={favoriteWords}
         renderItem={renderItem}
         keyExtractor={item => item.id}
-      />
-    </SafeAreaView>
+      />    
   )
 }
 

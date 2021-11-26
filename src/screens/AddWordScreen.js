@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, StyleSheet, ScrollView, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
+import { View, StyleSheet, ScrollView, TextInput, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 import { useDispatch } from "react-redux";
 import SubText from "../components/SubText";
 import Card from "../components/Card";
@@ -58,7 +58,6 @@ const AddWordScreen = ({navigation}) => {
     navigation.navigate("AllWords")
   }
   return(    
-    <SafeAreaView>
     <ScrollView>
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>      
     <View>      
@@ -117,7 +116,6 @@ const AddWordScreen = ({navigation}) => {
     </View>
     </TouchableWithoutFeedback>
     </ScrollView>    
-    </SafeAreaView>
   )
 }
 

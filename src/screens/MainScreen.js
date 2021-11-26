@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadWords } from "../store/actions/wordAction";
-import { View, Text, StyleSheet, SafeAreaView, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import SubText from "../components/SubText";
 import TitleText from "../components/TitleText";
 import { THEME } from "../theme";
@@ -39,8 +39,7 @@ const MainScreen = ({navigation}) => {
     )
   } 
 
-  return(
-    <SafeAreaView>
+  return(   
     <View >
       <Card>
         <SubText>There are words in your dictionary: <Text style={styles.lengthText}> - {wordsLength} - </Text></SubText>        
@@ -52,8 +51,7 @@ const MainScreen = ({navigation}) => {
       </View>      
       <TitleText titleStyle={styles.titleStyle}>Your Categories: <Text style={{ color: THEME.GREY_COLOR }}>[{categLength}]</Text></TitleText>
       <FlatList data={allCategories} renderItem={renderItem} keyExtractor={item => item}/>          
-    </View>
-    </SafeAreaView>
+    </View>    
   )
 }
 

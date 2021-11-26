@@ -71,14 +71,12 @@ const LearnedScreen = ({navigation}) => {
     });
   }, [navigation]);
 
-  return(
-    <SafeAreaView>
-      <FlatList
-        data={learnedWords}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
-    </SafeAreaView>
+  return(    
+    <FlatList
+      data={learnedWords}
+      renderItem={renderItem}
+      keyExtractor={item => item.id}
+    />   
   )
 }
 
