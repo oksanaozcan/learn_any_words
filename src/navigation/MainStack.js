@@ -22,12 +22,7 @@ function MainStackScreen({navigation}) {
      }}>
       <MainStack.Screen name="Main" component={MainScreen} 
         options={{
-          headerTitle: "Learn Any Words",
-          headerRight: (props) => (
-            <View style={styles.btnContainer}>
-              <Ionicons name="information-circle-outline" size={25} color={THEME.GREY_COLOR} {...props} onPress={() => navigation.navigate('ReadMe')}/>              
-            </View>            
-          )      
+          headerTitle: "Learn Any Words"
         }}
       />
       <MainStack.Screen name="AllWords" component={AllWordsScreen} 
