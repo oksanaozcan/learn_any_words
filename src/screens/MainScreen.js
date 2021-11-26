@@ -5,22 +5,22 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import SubText from "../components/SubText";
 import TitleText from "../components/TitleText";
 import { THEME } from "../theme";
-import CategoryItem from "../components/CategoryItem";
 import MyButton from "../components/MyButton";
 import Card from "../components/Card";
+import { ListItem } from 'react-native-elements'
 
 const MainScreen = ({navigation}) => { 
-  const renderItem = ({item}) => {
-    return(
-      <CategoryItem item={item} 
-      openCategory={() => navigation.navigate('Category', 
-      {
-        openCategory: item,         
-      })}
-      />
-    )
-  }
-  
+
+  const renderItem = ({ item }) => (
+    <ListItem bottomDivider onPress={() => navigation.navigate('Category', {openCategory: item})}>   
+      <ListItem.Title>{item}</ListItem.Title>  
+      <ListItem.Content>        
+        <ListItem.Subtitle>{item}</ListItem.Subtitle>
+      </ListItem.Content>
+      <ListItem.Chevron />
+    </ListItem>
+  )
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(loadWords())
@@ -40,7 +40,7 @@ const MainScreen = ({navigation}) => {
   } 
 
   return(   
-    <View >
+    <View style={styles.container} >
       <Card>
         <SubText>There are words in your dictionary: <Text style={styles.lengthText}> - {wordsLength} - </Text></SubText>        
       </Card>      
@@ -50,23 +50,26 @@ const MainScreen = ({navigation}) => {
         <MyButton title="Learned" onPress={() => navigation.navigate('Learned')} color={THEME.GREY_COLOR}/>
       </View>      
       <TitleText titleStyle={styles.titleStyle}>Your Categories: <Text style={{ color: THEME.GREY_COLOR }}>[{categLength}]</Text></TitleText>
-      <FlatList data={allCategories} renderItem={renderItem} keyExtractor={item => item}/>          
+      <FlatList data={allCategories} renderItem={renderItem} keyExtractor={(item, index) => index.toString()}/>          
     </View>    
   )
 }
 
 const styles = StyleSheet.create({  
-  btnContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 15
+  container: {
+    width: '93%'
   },
+  // btnContainer: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   padding: 15
+  // },
   titleStyle: {
     textAlign: 'center'
   },
   lengthText: {
     color: THEME.PINK_COLOR, 
-    fontSize: 30,
+    fontSize: 20,
     paddingLeft: 30
   },
   nullLength: {

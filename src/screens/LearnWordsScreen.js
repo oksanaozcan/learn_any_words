@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Button, FlatList } from "react-native";
-import { ListItem, Avatar } from 'react-native-elements'
+import { ListItem } from 'react-native-elements'
 import { useSelector } from "react-redux";
 import { THEME } from "../theme";
 import TitleText from '../components/TitleText';
@@ -21,26 +21,19 @@ const LearnWordsScreen = ({navigation}) => {
   </ListItem>
 )
  
-  return(
-    <View style={styles.center}>
-      <View style={styles.btnContainer}>
-        <Button style={styles.btn} title="Learn All Words" onPress={() => navigation.navigate('TrenAllWords', {data: 'allWords'})} color={THEME.GREEN_COLOR} disabled={!allWordslengtn}/>
-        <Button title="Learn Favorite Words" onPress={() => navigation.navigate('TrenAllWords', {data: 'favoriteWords'})} color={THEME.PINK_COLOR} disabled={!favoriteWordslengtn}/>
-        <Button title="Remember learned Words" onPress={() => navigation.navigate('TrenAllWords', {data: 'learnedWords'})} color={THEME.GREY_COLOR} disabled={!learnedWordslengtn}/>
-        <TitleText titleStyle={styles.titleStyle}> Your Categories: </TitleText>
-        <FlatList keyExtractor={item => item} data={allCategories} renderItem={renderItem}
-    />
-      </View>      
-    </View>
+  return(    
+    <View style={styles.btnContainer}>
+      <Button style={styles.btn} title="Learn All Words" onPress={() => navigation.navigate('TrenAllWords', {data: 'allWords'})} color={THEME.GREEN_COLOR} disabled={!allWordslengtn}/>
+      <Button title="Learn Favorite Words" onPress={() => navigation.navigate('TrenAllWords', {data: 'favoriteWords'})} color={THEME.PINK_COLOR} disabled={!favoriteWordslengtn}/>
+      <Button title="Remember learned Words" onPress={() => navigation.navigate('TrenAllWords', {data: 'learnedWords'})} color={THEME.GREY_COLOR} disabled={!learnedWordslengtn}/>
+      <TitleText titleStyle={styles.titleStyle}> Your Categories: </TitleText>
+      <FlatList keyExtractor={item => item} data={allCategories} renderItem={renderItem}/>
+    </View>      
+   
   )
 }
 
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
+const styles = StyleSheet.create({  
   btnContainer: {
     width: '93%'
   },
