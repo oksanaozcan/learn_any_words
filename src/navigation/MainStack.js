@@ -1,12 +1,11 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Ionicons } from '@expo/vector-icons';
 import MainScreen from '../screens/MainScreen';
 import AllWordsScreen from '../screens/AllWordsScreen';
 import CategoryScreen from '../screens/CategoryScreen';
 import WordScreen from '../screens/WordScreen';
 import { THEME } from '../theme';
-import { View, StyleSheet} from 'react-native';
+import { StyleSheet} from 'react-native';
 import EditWordScreen from '../screens/EditWordScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
 import LearnedScreen from '../screens/LearnedScreen';

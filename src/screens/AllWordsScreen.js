@@ -45,14 +45,9 @@ const AllWordsScreen = ({navigation}) => {
     });
   }, [navigation]);
 
-  const renderItem = ({ item }) => (
-    <WordItem item={item} 
-      openWord={() => navigation.navigate('Word', 
-      {
-        wordId: item.id,
-        word: item.word       
-      })}
-    />
+  const renderItem = ({ item }) => (    
+    <WordItem item={item} openWord={() => navigation.navigate('Word', { wordId: item.id, word: item.word })}/>
+    
   ); 
 
   const updateSearch = str => {
