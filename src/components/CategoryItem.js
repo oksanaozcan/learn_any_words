@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   progressLine: {
     position: 'absolute',    
     height: '100%',
-    backgroundColor: THEME.GREEN_COLOR,    
+    backgroundColor: '#cfd8dc',    
     zIndex: -1
   }
 });
