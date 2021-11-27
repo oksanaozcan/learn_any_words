@@ -14,8 +14,7 @@ const LearnWordsScreen = ({navigation}) => {
   const renderItem = ({ item }) => (
   <ListItem bottomDivider onPress={() => navigation.navigate('TrenAllWords', {data: item })}>    
     <ListItem.Content>
-      <ListItem.Title>{item ? item : 'not name'}</ListItem.Title>
-      <ListItem.Subtitle>Category</ListItem.Subtitle>
+      <ListItem.Title>{item ? item : 'not name'}</ListItem.Title>      
     </ListItem.Content>
     <ListItem.Chevron />
   </ListItem>
@@ -23,9 +22,15 @@ const LearnWordsScreen = ({navigation}) => {
  
   return(    
     <View style={styles.btnContainer}>
-      <Button style={styles.btn} title="Learn All Words" onPress={() => navigation.navigate('TrenAllWords', {data: 'allWords'})} color={THEME.GREEN_COLOR} disabled={!allWordslengtn}/>
-      <Button title="Learn Favorite Words" onPress={() => navigation.navigate('TrenAllWords', {data: 'favoriteWords'})} color={THEME.PINK_COLOR} disabled={!favoriteWordslengtn}/>
-      <Button title="Remember learned Words" onPress={() => navigation.navigate('TrenAllWords', {data: 'learnedWords'})} color={THEME.GREY_COLOR} disabled={!learnedWordslengtn}/>
+      <View style={styles.btn}>
+        <Button title="Learn All Words" onPress={() => navigation.navigate('TrenAllWords', {data: 'allWords'})} color={THEME.GREEN_COLOR} disabled={!allWordslengtn}/>
+      </View>   
+      <View style={styles.btn}>
+        <Button title="Learn Favorite Words" onPress={() => navigation.navigate('TrenAllWords', {data: 'favoriteWords'})} color={THEME.PINK_COLOR} disabled={!favoriteWordslengtn}/>
+      </View>   
+      <View style={styles.btn}>
+        <Button title="Remember learned Words" onPress={() => navigation.navigate('TrenAllWords', {data: 'learnedWords'})} color={THEME.GREY_COLOR} disabled={!learnedWordslengtn}/>
+      </View>            
       <TitleText titleStyle={styles.titleStyle}> Your Categories: </TitleText>
       <FlatList keyExtractor={item => item} data={allCategories} renderItem={renderItem}/>
     </View>      
@@ -33,14 +38,14 @@ const LearnWordsScreen = ({navigation}) => {
   )
 }
 
-const styles = StyleSheet.create({  
-  btnContainer: {
-    width: '93%'
-  },
+const styles = StyleSheet.create({    
   titleStyle: {
     textAlign: 'center',
     padding: 10
-  }  
+  },
+  btn: {
+    marginTop: 10
+  }
 })
 
 export default LearnWordsScreen;
