@@ -40,10 +40,13 @@ const MainScreen = ({navigation}) => {
   
   if(wordsLength == 0) {    
     return (
-      <View>
-        <TitleText>You dont have words anymore</TitleText>
-        <MyButton title="Add Word" onPress={() => navigation.navigate('AddWord')} color={THEME.GREEN_COLOR}/>
-      </View>    
+      <Card>
+        <Card.Title>You don't have words</Card.Title>
+        <Card.Divider/>
+        <View style={styles.center}>
+          <MyButton title="Add Word" onPress={() => navigation.navigate('AddWord')} color={THEME.GREEN_COLOR}/>
+        </View>        
+      </Card>
     )
   } 
 
@@ -64,7 +67,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: 160,
     justifyContent: 'space-between'
-  }  
+  },
+  center: {    
+    alignItems: 'center'
+  } 
 })
 
 export default MainScreen;
