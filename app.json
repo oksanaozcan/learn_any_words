@@ -17,9 +17,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.oksanaozcan.learn_any_words",
-      "buildNumber": "1.0.0"
+      "supportsTablet": true      
     },
     "android": {
       "adaptiveIcon": {
